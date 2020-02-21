@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teanga: Learn Irish!</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="google" content="notranslate">
+    <style>
+        .fop-textbox {
+            border-radius: 10px;
+        }
+    </style>
+
+    <script language="javascript" type="text/javascript" src="scripts/jquery-3.4.1.js">
+        </script>
+    <script>
+    function setupSearchBox(e, b, d, f) {
+    if (!e || !b || !d) {
+        alert("Please specify required parameters (searchformid, websiteurl and uilang) to setupSearchBox()");
+        return
+    }
+    var a = function (i)
+    {
+        var h = b + d + "/search/ei/direct/"; if (f)
+        {
+            var g = window.open(h + "?q=" + i, f, "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=600,height=550,top=300,left=300");
+            if (g) {
+                g.focus()
+            }
+        } else {
+            window.open(h + "?q=" + i)
+        }
+    }; var c = function () {
+        var g = $("#" + e).find("[name='q']").val(); g = g.replace(/[\.\*\?;!()\+,\[:\]<>^_`\[\]{}~\\\/\"\'=]/g, " ");
+        g = g.replace(/\s+/g, " ");
+        return (g != null && g.replace("/s/g", "").length > 0 ? g : "")
+    };
+    $("#" + e).submit(function () {
+        var g = c();
+        if (g.length > 0) {
+            a(g)
+        } return false
+    })
+    };
+    </script>
+    <script language="javascript" type="text/javascript">
+    jQuery(function (){
+    setupSearchBox('formname', 'https://www.focloir.ie/', 'en');
+         });
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Teanga", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Learn", "Learn", "Home")</li>
+                    <li>@Html.ActionLink("My Vocabulary", "Vocab", "Home")</li>
+                    <li></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Teanga</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿@model FYP.Models.DirectionQ
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DirectionQ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectAns)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectAns)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Qid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

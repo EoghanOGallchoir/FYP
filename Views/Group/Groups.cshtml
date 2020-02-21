@@ -1,0 +1,43 @@
+﻿@model FYP.Models.Group
+
+@{
+    ViewBag.Title = "Groups";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Groups</h2>
+
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupPass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupPass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.GroupID }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
