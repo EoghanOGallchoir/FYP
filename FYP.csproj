@@ -214,6 +214,9 @@
     <Compile Include="Models\DirectionQ.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DirectionQ2.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Group.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
@@ -248,6 +251,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\search.png" />
     <Content Include="Images\search2.jpg" />
+    <Content Include="Images\tick.jpg" />
     <Content Include="Models\Groups.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Groups.edmx</DependentUpon>
@@ -266,6 +270,9 @@
     </EntityDeploy>
     <Content Include="Models\Groups.edmx.diagram">
       <DependentUpon>Groups.edmx</DependentUpon>
+    </Content>
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -325,6 +332,11 @@
     <Content Include="Views\DirectionQs\Edit.cshtml" />
     <Content Include="Views\DirectionQs\Index.cshtml" />
     <Content Include="Views\Class\DirectionsP2.cshtml" />
+    <Content Include="Views\Home\TestView.cshtml" />
+    <Content Include="Views\Manage\ChangeUserName.cshtml" />
+    <Content Include="Views\Class\DirQuiz.cshtml" />
+    <Content Include="Views\Class\ResultsD1.cshtml" />
+    <Content Include="Views\Class\ResultsD2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -122,6 +122,7 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
     <EntitySet Name="DirectionQs" EntityType="msdb5455Model.DirectionQ" />
+    <EntitySet Name="DirectionQ2" EntityType="msdb5455Model.DirectionQ2" />
   </EntityContainer>
   <EntityType Name="DirectionQ">
     <Key>
@@ -134,5 +135,16 @@
     <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CorrectAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DirectionQ2">
+    <Key>
+      <PropertyRef Name="Qid" />
+    </Key>
+    <Property Name="Qid" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ans1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ans2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ans3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ans4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

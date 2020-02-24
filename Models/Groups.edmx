@@ -80,6 +80,17 @@
           <Property Name="option4" Type="nvarchar" MaxLength="50" />
           <Property Name="CorrectAns" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="DirectionQ2">
+          <Key>
+            <PropertyRef Name="Qid" />
+          </Key>
+          <Property Name="Qid" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ans1" Type="nvarchar(max)" />
+          <Property Name="ans2" Type="nvarchar(max)" />
+          <Property Name="ans3" Type="nvarchar(max)" />
+          <Property Name="ans4" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Groups">
           <Key>
             <PropertyRef Name="GroupID" />
@@ -117,20 +128,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -153,6 +150,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DirectionQ" EntityType="Self.DirectionQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DirectionQ2" EntityType="Self.DirectionQ2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -161,10 +159,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -297,6 +291,7 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="DirectionQs" EntityType="msdb5455Model.DirectionQ" />
+          <EntitySet Name="DirectionQ2" EntityType="msdb5455Model.DirectionQ2" />
         </EntityContainer>
         <EntityType Name="DirectionQ">
           <Key>
@@ -309,6 +304,17 @@
           <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CorrectAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DirectionQ2">
+          <Key>
+            <PropertyRef Name="Qid" />
+          </Key>
+          <Property Name="Qid" Type="Int32" Nullable="false" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ans1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ans2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ans3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ans4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -399,6 +405,18 @@
                 <ScalarProperty Name="option3" ColumnName="option3" />
                 <ScalarProperty Name="option2" ColumnName="option2" />
                 <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Qid" ColumnName="Qid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DirectionQ2">
+            <EntityTypeMapping TypeName="msdb5455Model.DirectionQ2">
+              <MappingFragment StoreEntitySet="DirectionQ2">
+                <ScalarProperty Name="ans4" ColumnName="ans4" />
+                <ScalarProperty Name="ans3" ColumnName="ans3" />
+                <ScalarProperty Name="ans2" ColumnName="ans2" />
+                <ScalarProperty Name="ans1" ColumnName="ans1" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
                 <ScalarProperty Name="Qid" ColumnName="Qid" />
               </MappingFragment>

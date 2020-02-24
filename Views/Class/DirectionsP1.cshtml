@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FYP.Models.DirectionQ>
+﻿@model FYP.Models.DirectionQ
 @{
     ViewBag.Title = "DirectionsP1";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,78 +6,48 @@
 
 <h2>Directions - The Basics</h2>
 
-<script>
-    $(document).ready(function () {
-        $("#but1").click(function () {
-            $(".radoption").show();
-            $(".radoption").attr("disabled", true);
-        });
-    });
-
-
-    function displayresults() {
-        document.getElementById("SelectedRadio").innerHTML = "";
-        var results = document.getElementByTagName('input');
-        for (i = 0; i < results.length; i++) {
-            if (results[i].type == "radio") {
-                if (results[i].checked) {
-                    document.getElementById("SelectedRadio").innerHTML
-                        += "Q)" + results[i].name + "Your Selected Answer is: " + results[i].value + "<br/>";
-                }
-            }
-        }
-    }
-
-      function displayRadioValue() {
-            document.getElementById("demo").innerHTML = "";
-            var ele = document.getElementsByTagName('input');
-
-            for(i = 0; i < ele.length; i++) {
-
-                if(ele[i].type="radio") {
-
-                    if (ele[i].checked.value==@ViewBag.MyRightAnswer)
-                        document.getElementById("demo").innerHTML += "Correct Answer!";
-
-                }
-            }
-        }
-</script>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 <div style="float: left; display: inline;">@Html.ActionLink("Back", "DirectionStart", "Class")</div>
 
 
-<Center>
-    <h3>Intro to Directions</h3>
-    <hr />
-    <table>
-        @foreach (var item in Model)
-        {
-            if (item.Qid == 1)
-            {
-                <tr>
-                    <td>@item.Qid) @item.Question?</td>
-                </tr>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-                <tr>
-                    <td>
-                        <input type="radio" id="option1" name="@item.Qid" class="radoption" value="@item.option1" /> @item.option1<br />
-                        <input type="radio" id="option1" name="@item.Qid" class="radoption" value="@item.option2" /> @item.option2<br />
-                        <input type="radio" id="option1" name="@item.Qid" class="radoption" value="@item.option3" /> @item.option3<br />
-                        <input type="radio" id="option1" name="@item.Qid" class="radoption" value="@item.option4" /> @item.option4<br />
-                        <div id="correctans" name="@item.Qid" class="radoption" style="display:none"><b>Correct Answer: @item.CorrectAns</b></div>
-                        <br />
-                    </td>
-                </tr>
+    <div class="row">
+        <div class="container" style="margin:0 auto">
+
+            <div class="row">
+                <h1> @Html.DisplayFor(x => x.Question) </h1>
+
+            </div>
+
+            <div class="row">
+                <h3>@Html.RadioButtonFor(x => x.option1, Model.Qid) @Model.option1</h3>
+            </div>
+
+            <div class="row">
+                <h3>@Html.RadioButtonFor(x => x.option2, Model.Qid) @Model.option2</h3>
+            </div>
+
+            <div class="row">
+                <h3>@Html.RadioButtonFor(x => x.option3, Model.Qid) @Model.option3</h3>
+            </div>
+
+            <div class="row">
+                <h3>@Html.RadioButtonFor(x => x.option4, Model.Qid) @Model.option4</h3>
+            </div>
 
 
-            }
+            
+            @Html.HiddenFor(x => x.CorrectAns)
 
-        }
-    </table>
-    <p id="demo"></p>
-    <button id="but1" type="button" onclick="displayRadioValue()">Next</button>
-    <br />
-    <label id="SelectedRadio"></label>
-</Center>
+            <div class="row">
+                <input type="submit" value="submit" class="btn btn-success" />
+            </div>
+
+        </div>
+
+    </div>
+}

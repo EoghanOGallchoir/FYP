@@ -10,11 +10,12 @@
         <EntityTypeShape EntityType="msdb5455Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="msdb5455Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="msdb5455Model.AspNetUser" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="msdb5455Model.Group" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="msdb5455Model.Group" Width="1.5" PointX="8" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="msdb5455Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="msdb5455Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="msdb5455Model.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="msdb5455Model.DirectionQ" Width="1.5" PointX="10.25" PointY="3.25" />
+        <EntityTypeShape EntityType="msdb5455Model.DirectionQ" Width="1.5" PointX="10.25" PointY="1.75" />
+        <EntityTypeShape EntityType="msdb5455Model.DirectionQ2" Width="1.5" PointX="10.25" PointY="4.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

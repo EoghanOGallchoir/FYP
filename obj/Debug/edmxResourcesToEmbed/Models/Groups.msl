@@ -89,5 +89,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DirectionQ2">
+      <EntityTypeMapping TypeName="msdb5455Model.DirectionQ2">
+        <MappingFragment StoreEntitySet="DirectionQ2">
+          <ScalarProperty Name="ans4" ColumnName="ans4" />
+          <ScalarProperty Name="ans3" ColumnName="ans3" />
+          <ScalarProperty Name="ans2" ColumnName="ans2" />
+          <ScalarProperty Name="ans1" ColumnName="ans1" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Qid" ColumnName="Qid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

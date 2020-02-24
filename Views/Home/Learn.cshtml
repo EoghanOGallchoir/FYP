@@ -32,17 +32,30 @@
 
 <body onload="setupSearchBox('formname', 'https://www.focloir.ie/', 'en');">
 
-    <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
-        Asking For Directions
-    </a>
+    <div class="row">
+        <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
+            Asking For Directions
+        </a>
+
+        <form class="fop-searchbox" id="formname" name="formname" method="get" autocomplete="off">
+            <input class="fop-textbox" name="q" placeholder="Search an English word..." type="text" ; />
+            <input class="fop-submit-btn" type="image" value="Search" src="~/Images/search.jpg" ; />
+        </form>
+    </div>
+    <br />
+
+    <div class="row">
+        <a role="button" class="btn btn-primary btn-lg" href="~/Class/FootballStart">
+            Listening to Football
+        </a>
+    </div>
+    <br />
 
 
-    <form class="fop-searchbox" id="formname" name="formname" method="get">
-        <input class="fop-textbox" name="q" placeholder="Search an English word..." type="text" ; />
-        <input class="fop-submit-btn" type="image" value="Search" src="~/Images/search.jpg" ; />
-    </form>
-
-  <div id="WOTD">
+    <div class="col-lg-offset-0">
+       
+    </div>
+    <div id="WOTD">
 
     </div>
 

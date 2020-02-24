@@ -32,5 +32,6 @@ namespace FYP.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<DirectionQ> DirectionQs { get; set; }
+        public virtual DbSet<DirectionQ2> DirectionQ2 { get; set; }
     }
 }
