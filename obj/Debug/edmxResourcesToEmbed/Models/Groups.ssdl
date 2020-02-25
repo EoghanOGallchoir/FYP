@@ -95,6 +95,22 @@
     <Property Name="GSize" Type="int" Nullable="false" />
     <Property Name="GName" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProgressXP" Type="int" />
+    <Property Name="quiz1" Type="bit" />
+    <Property Name="quiz2" Type="bit" />
+    <Property Name="quiz3" Type="bit" />
+    <Property Name="quiz4" Type="bit" />
+    <Property Name="quiz5" Type="bit" />
+    <Property Name="quiz6" Type="bit" />
+    <Property Name="GroupId" Type="int" />
+  </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -147,6 +163,7 @@
     <EntitySet Name="DirectionQ" EntityType="Self.DirectionQ" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DirectionQ2" EntityType="Self.DirectionQ2" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />

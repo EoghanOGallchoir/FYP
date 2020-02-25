@@ -7,37 +7,71 @@
 <h2>Directions - Sentence Construction</h2>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<style>
+    .pic {
+        width: 450px;
+        position: relative;
+        right: -60%;
+    }
 
-<div style="float: left; display: inline;">@Html.ActionLink("Back", "DirectionStart", "Class")</div>
+    .pad{
+        padding:10px;
+        padding-left:-120px;
+    }
+</style>
+<body>
+    <div style="float: left; display: inline;">@Html.ActionLink("Back", "DirectionStart", "Class")</div>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="row">
-        <div class="container" style="margin:0 auto">
+        <div class="row">
+            <div class="container" style="margin: 0 auto">
 
-            <div class="row">
-                <h1> @Html.DisplayFor(x => x.Question) </h1>
+                <div class="row">
+                    <h2> @Html.DisplayFor(x => x.Question) </h2>
+
+                </div>
+                <div class="row" style="width:500px">
+
+                    <input type="text" class="form-control" name="attemptedAns" required />
+                </div>
+
+                <div class="row pad" style="width:200px">
+                    <input type="submit" value="submit" class="btn btn-success" />
+                </div>
+
+                <div class="row">
+                    @Html.HiddenFor(x => x.ans1)
+                    @Html.HiddenFor(x => x.ans2)
+                    @Html.HiddenFor(x => x.ans3)
+                    @Html.HiddenFor(x => x.ans4)
+                </div>
+
+                @if (Model.Qid == 5)
+                {
+
+
+                    <div class="row pic">
+                        <img src="https://us.123rf.com/450wm/meganeura/meganeura1812/meganeura181200046/117014746-sand-beach-simple-cartoon-style-background-sea-shore-view.jpg?ver=6" />
+                    </div>
+                }
+                else if (Model.Qid == 4)
+                {
+
+                
+                    <div class="row pic">
+                        <img src="https://d1fohtyzq6kn2t.cloudfront.net/img/quiz-img/a_QOMuv.png" />
+                    </div>
+                }
+              
+
 
             </div>
-            <div class="row">
 
-                <input type="text" name="attemptedAns" />
-            </div>
-
-            <div class="row">
-                @Html.HiddenFor(x => x.ans1)
-                @Html.HiddenFor(x => x.ans2)
-                @Html.HiddenFor(x => x.ans3)
-                @Html.HiddenFor(x => x.ans4)
-            </div>
-            <div class="row">
-                <input type="submit" value="submit" class="btn btn-success" />
-            </div>
 
         </div>
-
-    </div>
-}
+    }
+</body>

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace FYP.Controllers
 {
+    [Authorize]
     public class GroupController : Controller
     {
         // GET: Group

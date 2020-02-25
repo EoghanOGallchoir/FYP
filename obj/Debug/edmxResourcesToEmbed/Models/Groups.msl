@@ -101,5 +101,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="msdb5455Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="quiz6" ColumnName="quiz6" />
+          <ScalarProperty Name="quiz5" ColumnName="quiz5" />
+          <ScalarProperty Name="quiz4" ColumnName="quiz4" />
+          <ScalarProperty Name="quiz3" ColumnName="quiz3" />
+          <ScalarProperty Name="quiz2" ColumnName="quiz2" />
+          <ScalarProperty Name="quiz1" ColumnName="quiz1" />
+          <ScalarProperty Name="ProgressXP" ColumnName="ProgressXP" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

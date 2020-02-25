@@ -9,6 +9,8 @@ using System.Globalization;
 
 namespace FYP.Controllers
 {
+
+    [Authorize]
     public class ClassController : Controller
     {
 
@@ -23,6 +25,8 @@ namespace FYP.Controllers
         {
             TempData["Score"] = 0;
             TempData["Score2"] = 0;
+            TempData["qID"] = 1;
+            TempData["q2ID"] = 1;
             return View();
         }
 
@@ -56,7 +60,7 @@ namespace FYP.Controllers
                     int qid = Convert.ToInt32(TempData["qid"].ToString());
                     q = db.DirectionQs.Where(x => x.Qid == qid).SingleOrDefault();
 
-                  
+
                     TempData["qid"] = qid;
                     TempData["i"] = Convert.ToInt32(TempData["i"].ToString()) + 1;
                 }
@@ -133,6 +137,12 @@ namespace FYP.Controllers
             if (q.CorrectAns == null)
             {
                 Debug.WriteLine("answer was passed in as null");
+            }
+
+            if (Convert.ToInt32(TempData["Score"]) == 4)
+            {
+                //set quiz1 in user table to true, add to progressXP
+             
             }
             TempData.Keep();
             return RedirectToAction("DirectionsP1");

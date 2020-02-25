@@ -33,5 +33,8 @@ namespace FYP.Models
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<DirectionQ> DirectionQs { get; set; }
         public virtual DbSet<DirectionQ2> DirectionQ2 { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<FYP.Models.Member> Members { get; set; }
     }
 }

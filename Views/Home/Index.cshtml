@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model IEnumerable<FYP.Models.AspNetUser>
+@model IEnumerable<FYP.Models.User>
 @{
     ViewBag.Title = "My Home Page";
 
@@ -19,33 +19,42 @@
 </style>
 
 <div class="jumbotron">
-   
+    @User.Identity.GetUserId()
+
 </div>
     
 <body class="container body-content">
 
     <h5>Overall Progress:</h5>
-    @if (User.Identity.IsAuthenticated == true) {
+    @if (User.Identity.IsAuthenticated == true)
+    {
+
         foreach (var item in Model)
         {
-            if (User.Identity.GetUserId() == item.Id)
+            if (User.Identity.GetUserName() == item.UserName)
             {
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar"
-                     aria-valuemin="0" aria-valuemax="100" style="width:@item.ProgressXP%">
-                    @item.ProgressXP%
-                </div>
-              
-            </div>
+                if (item.ProgressXP != null)
+                {
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar"
+                             aria-valuemin="0" aria-valuemax="100" style="width:@item.ProgressXP%">
+                            @item.ProgressXP%
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar"
+                             aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                           No Progress Logged Yet!
+                        </div>
+                    </div>
+                }
             }
-
         }
+    }
 
-    }
-    else
-    {
-        Html.Label("No progress available");
-    }
     <div class="twitter-tweet" style="width:200px" ;>
         <a href="https://twitter.com/intent/tweet?button_hashtag=Teanga&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #Teanga</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

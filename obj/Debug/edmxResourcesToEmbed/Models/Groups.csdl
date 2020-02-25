@@ -123,6 +123,7 @@
     </AssociationSet>
     <EntitySet Name="DirectionQs" EntityType="msdb5455Model.DirectionQ" />
     <EntitySet Name="DirectionQ2" EntityType="msdb5455Model.DirectionQ2" />
+    <EntitySet Name="Users" EntityType="msdb5455Model.User" />
   </EntityContainer>
   <EntityType Name="DirectionQ">
     <Key>
@@ -146,5 +147,21 @@
     <Property Name="ans2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ans3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ans4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ProgressXP" Type="Int32" />
+    <Property Name="quiz1" Type="Boolean" />
+    <Property Name="quiz2" Type="Boolean" />
+    <Property Name="quiz3" Type="Boolean" />
+    <Property Name="quiz4" Type="Boolean" />
+    <Property Name="quiz5" Type="Boolean" />
+    <Property Name="quiz6" Type="Boolean" />
+    <Property Name="GroupId" Type="Int32" />
   </EntityType>
 </Schema>

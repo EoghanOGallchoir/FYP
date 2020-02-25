@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace WebApplication3.Controllers
 {
 
+    [Authorize]
     public class HomeController : Controller
     {
         private msdb5455Entities db = new msdb5455Entities();
@@ -15,13 +17,13 @@ namespace WebApplication3.Controllers
         public ActionResult Index()
         {
 
-            List<AspNetUser> user = new List<AspNetUser>();
-            foreach (var u in db.AspNetUsers)
+            List<User> user = new List<User>();
+            foreach (var u in db.Users)
             {
                 user.Add(u);
             }
-            ViewBag.person = user;
-            return View(db.AspNetUsers);
+           
+            return View(user);
         }
 
         public ActionResult About()
