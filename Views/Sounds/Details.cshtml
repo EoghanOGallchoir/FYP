@@ -1,0 +1,43 @@
+﻿@model FYP.Models.Sound
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sound</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quizID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quizID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q_optionID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q_optionID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sound_reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sound_reference)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.soundID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

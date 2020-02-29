@@ -239,6 +239,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Sound.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
@@ -248,6 +251,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Views\GroupsController.cs" />
+    <Compile Include="Views\SoundsController.cs" />
     <Compile Include="Views\UsersController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -262,9 +266,11 @@
     <Content Include="Images\bar.png" />
     <Content Include="Images\church.png" />
     <Content Include="Images\fish.png" />
+    <Content Include="Images\icons8-sound-50.png" />
+    <Content Include="Images\incorrect.png" />
     <Content Include="Images\nature.png" />
     <Content Include="Images\search.png" />
-    <Content Include="Images\search2.jpg" />
+    <Content Include="Images\sound.png" />
     <Content Include="Images\tick.jpg" />
     <Content Include="Models\Groups.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -299,6 +305,32 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Sounds\amharclann.wav" />
+    <Content Include="Sounds\an-bo.wav" />
+    <Content Include="Sounds\an-bothar.wav" />
+    <Content Include="Sounds\an-ospideal.wav" />
+    <Content Include="Sounds\an-tra.wav" />
+    <Content Include="Sounds\bialann-mara.wav" />
+    <Content Include="Sounds\bunscoil.wav" />
+    <Content Include="Sounds\cas-chle.wav" />
+    <Content Include="Sounds\cas-dheis.wav" />
+    <Content Include="Sounds\cen-ait-ostan.wav" />
+    <Content Include="Sounds\cen-ait.wav" />
+    <Content Include="Sounds\cen-fath.wav" />
+    <Content Include="Sounds\chle-direach.wav" />
+    <Content Include="Sounds\chul.wav" />
+    <Content Include="Sounds\coinnigh-direach.wav" />
+    <Content Include="Sounds\de-ata-ann.wav" />
+    <Content Include="Sounds\direach-fhairraige.wav" />
+    <Content Include="Sounds\eaglaise.wav" />
+    <Content Include="Sounds\fire_bow_sound-mike-koenig.wav" />
+    <Content Include="Sounds\pairc-peile.wav" />
+    <Content Include="Sounds\pairc.wav" />
+    <Content Include="Sounds\priomhbhothar.wav" />
+    <Content Include="Sounds\siopa.wav" />
+    <Content Include="Sounds\siuloid-dulra.wav" />
+    <Content Include="Sounds\teach-tabhairne.wav" />
+    <Content Include="Sounds\Tiomaint.wav" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -318,15 +350,9 @@
     <Content Include="Views\Home\Learn.cshtml" />
     <Content Include="Views\Home\Vocab.cshtml" />
     <Content Include="Views\Class\DirectionStart.cshtml" />
-    <Content Include="Views\Class\DirectionsBasics.cshtml" />
     <Content Include="Views\Group\Groups.cshtml" />
     <Content Include="Views\Group\GroupList.cshtml" />
     <Content Include="Views\Class\DirectionsP1.cshtml" />
-    <Content Include="Views\DirectionQs\Create.cshtml" />
-    <Content Include="Views\DirectionQs\Delete.cshtml" />
-    <Content Include="Views\DirectionQs\Details.cshtml" />
-    <Content Include="Views\DirectionQs\Edit.cshtml" />
-    <Content Include="Views\DirectionQs\Index.cshtml" />
     <Content Include="Views\Class\DirectionsP2.cshtml" />
     <Content Include="Views\Home\TestView.cshtml" />
     <Content Include="Views\Class\ResultsD1.cshtml" />
@@ -345,6 +371,13 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Class\DirectionsP3.cshtml" />
     <Content Include="Views\Class\ResultsD3.cshtml" />
+    <Content Include="Views\Sounds\Create.cshtml" />
+    <Content Include="Views\Sounds\Delete.cshtml" />
+    <Content Include="Views\Sounds\Details.cshtml" />
+    <Content Include="Views\Sounds\Edit.cshtml" />
+    <Content Include="Views\Sounds\Index.cshtml" />
+    <Content Include="Views\Home\GroupHome.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,7 +432,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\DeepSpeech.0.6.1\build\DeepSpeech.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\DeepSpeech.0.6.1\build\DeepSpeech.targets'))" />
   </Target>
+  <Import Project="..\packages\DeepSpeech.0.6.1\build\DeepSpeech.targets" Condition="Exists('..\packages\DeepSpeech.0.6.1\build\DeepSpeech.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

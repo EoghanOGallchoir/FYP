@@ -74,6 +74,11 @@
     <Property Name="option3" Type="nvarchar" MaxLength="50" />
     <Property Name="option4" Type="nvarchar" MaxLength="50" />
     <Property Name="CorrectAns" Type="nvarchar" MaxLength="50" />
+    <Property Name="Question_Tr" Type="nvarchar(max)" />
+    <Property Name="Option1_Tr" Type="nvarchar(max)" />
+    <Property Name="Option2_Tr" Type="nvarchar(max)" />
+    <Property Name="Option3_Tr" Type="nvarchar(max)" />
+    <Property Name="Option4_Tr" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="DirectionQ2">
     <Key>
@@ -85,6 +90,11 @@
     <Property Name="ans2" Type="nvarchar(max)" />
     <Property Name="ans3" Type="nvarchar(max)" />
     <Property Name="ans4" Type="nvarchar(max)" />
+    <Property Name="Question_Tr" Type="nvarchar(max)" />
+    <Property Name="Option1_Tr" Type="nvarchar(max)" />
+    <Property Name="Option2_Tr" Type="nvarchar(max)" />
+    <Property Name="Option3_Tr" Type="nvarchar(max)" />
+    <Property Name="Option4_Tr" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="DirectionQ3">
     <Key>
@@ -96,8 +106,12 @@
     <Property Name="option2" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="option3" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="option4" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="CorrectOp" Type="nchar" MaxLength="10" />
     <Property Name="CorrectAns" Type="nvarchar" MaxLength="50" />
+    <Property Name="Question_Tr" Type="nvarchar(max)" />
+    <Property Name="Option1_Tr" Type="nvarchar(max)" />
+    <Property Name="Option2_Tr" Type="nvarchar(max)" />
+    <Property Name="Option3_Tr" Type="nvarchar(max)" />
+    <Property Name="Option4_Tr" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Groups">
     <Key>
@@ -107,6 +121,15 @@
     <Property Name="GroupPass" Type="char" MaxLength="100" Nullable="false" />
     <Property Name="GSize" Type="int" Nullable="false" />
     <Property Name="GName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Sounds">
+    <Key>
+      <PropertyRef Name="soundID" />
+    </Key>
+    <Property Name="soundID" Type="int" Nullable="false" />
+    <Property Name="quizID" Type="int" />
+    <Property Name="Q_optionID" Type="int" />
+    <Property Name="sound_reference" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -175,6 +198,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Groups">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="msdb5455ModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -186,6 +221,7 @@
     <EntitySet Name="DirectionQ2" EntityType="Self.DirectionQ2" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DirectionQ3" EntityType="Self.DirectionQ3" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sounds" EntityType="Self.Sounds" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VocabList" EntityType="Self.VocabList" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -199,6 +235,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Groups" Association="Self.FK_User_Groups">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -14,9 +14,18 @@ namespace FYP.Models
     
     public partial class Group
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Group()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
         public int GroupID { get; set; }
         public string GroupPass { get; set; }
         public int GSize { get; set; }
         public string GName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

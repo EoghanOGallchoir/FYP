@@ -7,15 +7,12 @@
 <h2>Results of Directions Intro</h2>
 
 <body>
-    
+
     @if (Convert.ToInt32(TempData["Score"]) == 4)
     {
-        <div>
-
-            <h1>Your score is @TempData["Score"]</h1>
-            <br />
-            <h1>Your Progress will be updated</h1>
-        </div>
+        <h1>Fuair tú @TempData["Score"] as 4.</h1>
+        <br />
+        <h1>Your Progress will be saved.</h1>
 
     }
     else
@@ -26,11 +23,11 @@
     }
 
 
-<div>
-    <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
-        Return to Directions Home
-    </a>
-</div>
+    <div>
+        <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
+            Return to Directions Home
+        </a>
+    </div>
 
 </body>
 

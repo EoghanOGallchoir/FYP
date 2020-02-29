@@ -4,7 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Directions - Sentence Construction</h2>
+
+@if (Model.Qid == 4)
+{
+    <h2>Treoracha - Abairt a chur i dtoll a chéile</h2>
+}
+else if (Model.Qid == 3)
+{
+    <h2>Treoracha - Sentence Construction</h2>
+}
+else
+{
+    <h2>Directions - Sentence Construction</h2>
+}
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <style>
@@ -14,9 +26,9 @@
         right: -60%;
     }
 
-    .pad{
-        padding:10px;
-        padding-left:-120px;
+    .pad {
+        padding: 10px;
+        padding-left: -120px;
     }
 </style>
 <body>
@@ -30,13 +42,29 @@
         <div class="row">
             <div class="container" style="margin: 0 auto">
 
-                <div class="row">
-                    <h2> @Html.DisplayFor(x => x.Question) </h2>
+                @if (Model.Question_Tr != null)
+                {
 
-                </div>
+                    <h1>
+                        @Html.DisplayFor(x => x.Question) <audio id="Q">
+                            <source src="~/Sounds/@Model.Question_Tr" type="audio/ogg" />
+                        </audio>
+                        <a onclick="document.getElementById('Q').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                        </a>
+                    </h1>
+
+                }
+                else
+                {
+                    <div class="row">
+                        <h1> @Html.DisplayFor(x => x.Question) </h1>
+                    </div>
+
+                }
                 <div class="row" style="width:500px">
 
-                    <input type="text" class="form-control" name="attemptedAns" required/>
+                    <input type="text" class="form-control" name="attemptedAns" required />
                 </div>
 
                 <div class="row pad" style="width:200px">
@@ -61,12 +89,12 @@
                 else if (Model.Qid == 4)
                 {
 
-                
+
                     <div class="row pic">
                         <img src="https://d1fohtyzq6kn2t.cloudfront.net/img/quiz-img/a_QOMuv.png" />
                     </div>
                 }
-              
+
 
 
             </div>

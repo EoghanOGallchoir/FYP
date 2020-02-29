@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FYP.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FYP.Views
 {
@@ -15,9 +16,11 @@ namespace FYP.Views
         private msdb5455Entities db = new msdb5455Entities();
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Users.ToList());
+
+
+            return View(db.Users.ToList().Where(x => x.GroupId == id));
         }
 
         // GET: Users/Details/5

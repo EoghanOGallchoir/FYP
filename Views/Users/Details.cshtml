@@ -1,4 +1,5 @@
-﻿@model FYP.Models.User
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<FYP.Models.User>
 
 @{
     ViewBag.Title = "Details";
@@ -19,21 +20,7 @@
             @Html.DisplayFor(model => model.UserName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProgressXP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProgressXP)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.quiz1)
@@ -83,17 +70,10 @@
             @Html.DisplayFor(model => model.quiz6)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GroupId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GroupId)
-        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    @Html.ActionLink("Back to List", "GroupHome")
 </p>

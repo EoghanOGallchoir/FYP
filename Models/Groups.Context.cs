@@ -30,11 +30,12 @@ namespace FYP.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<DirectionQ> DirectionQs { get; set; }
         public virtual DbSet<DirectionQ2> DirectionQ2 { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<VocabList> VocabLists { get; set; }
         public virtual DbSet<DirectionQ3> DirectionQ3 { get; set; }
+        public virtual DbSet<Sound> Sounds { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

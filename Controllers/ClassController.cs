@@ -57,7 +57,7 @@ namespace FYP.Controllers
                 try
                 {
                     DirectionQ q = null;
-                    int qID = Convert.ToInt32(TempData["qID"].ToString());
+                    int qID = Convert.ToInt32(TempData["qID"]);
                     q = db.DirectionQs.Where(x => x.Qid == qID).SingleOrDefault();
                     TempData["qID"] = ++q.Qid;
                     TempData.Keep();
@@ -80,7 +80,7 @@ namespace FYP.Controllers
         {
             
             Debug.WriteLine("After: " + q.CorrectAns);
-            string attemptedAns = null;
+            string attemptedAns = "F";
             if (q.option1 != null)
             {
                 attemptedAns = "A";
@@ -97,7 +97,7 @@ namespace FYP.Controllers
             {
                 attemptedAns = "D";
             }
-
+           
             if (attemptedAns.Equals(q.CorrectAns))
             {
                 
@@ -373,6 +373,7 @@ namespace FYP.Controllers
 
         public ActionResult DirectionsP3()
         {
+            
             if (TempData["q3ID"] == null)
             {
                 TempData["q3ID"] = 1;
@@ -380,23 +381,29 @@ namespace FYP.Controllers
 
             try
             {
+                Debug.WriteLine("Inside DP3 try");
                 DirectionQ3 q = null;
-                int q3ID = Convert.ToInt32(TempData["q3ID"].ToString());
+                int q3ID = Convert.ToInt32(TempData["q3ID"]);
+                Debug.WriteLine("q ID: "+q3ID);
                 q = db.DirectionQ3.Where(x => x.Qid == q3ID).SingleOrDefault();
+                Debug.WriteLine("Q: "+ q);
                 TempData["q3ID"] = ++q.Qid;
                 TempData.Keep();
-                Debug.WriteLine("before: " + q.CorrectOp);
+                Debug.WriteLine("before: " + q.CorrectAns);
                 return View(q);
             }
             catch (Exception)
             {
                 TempData["q3ID"] = 1;
+                Debug.WriteLine("Inside DP3 catch");
                 TempData.Keep();
                 return RedirectToAction("ResultsD3");
             }
 
-           // return View();
+
+            // return View();
         }
+
 
         [HttpPost]
         public ActionResult DirectionsP3(DirectionQ3 q)
@@ -428,12 +435,12 @@ namespace FYP.Controllers
 
             if (attemptedAns.Equals(q.CorrectAns))
             {
-                Debug.WriteLine("in adding");
+                Debug.WriteLine("im adding");
                 TempData["Score3"] = Convert.ToInt32(TempData["Score3"]) + 1;
                 Debug.WriteLine("Entered " + TempData["Score3"]);
             }
             Debug.WriteLine(TempData["Score3"]);
-            if (q.CorrectOp == null)
+            if (q.CorrectAns == null)
             {
                 Debug.WriteLine("answer was passed in as null");
             }
@@ -442,7 +449,7 @@ namespace FYP.Controllers
 
             TempData.Keep();
 
-            if (Convert.ToInt32(TempData["Score3"]) == 4)
+            if (Convert.ToInt32(TempData["Score3"]) == 5)
             {
                 if (ModelState.IsValid)
                 {

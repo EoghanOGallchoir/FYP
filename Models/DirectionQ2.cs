@@ -20,5 +20,10 @@ namespace FYP.Models
         public string ans2 { get; set; }
         public string ans3 { get; set; }
         public string ans4 { get; set; }
+        public string Question_Tr { get; set; }
+        public string Option1_Tr { get; set; }
+        public string Option2_Tr { get; set; }
+        public string Option3_Tr { get; set; }
+        public string Option4_Tr { get; set; }
     }
 }

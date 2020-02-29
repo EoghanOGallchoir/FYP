@@ -1,0 +1,156 @@
+﻿@model IEnumerable<FYP.Models.User>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @foreach (var item in Model)
+    {
+        if (ViewBag.id == item.Id)
+        {
+            <h4>@item.UserName's Progress</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.UserName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.quiz1)
+                </dt>
+
+                @if (item.quiz1 == true)
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/tick.jpg" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/incorrect.png" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+                <dt>
+                    @Html.DisplayNameFor(model => model.quiz2)
+                </dt>
+
+                @if (item.quiz2 == true)
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/tick.jpg" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/incorrect.png" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.quiz3)
+                </dt>
+
+                @if (item.quiz3 == true)
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/tick.jpg" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/incorrect.png" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.quiz4)
+                </dt>
+
+                @if (item.quiz4 == true)
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/tick.jpg" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/incorrect.png" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.quiz5)
+                </dt>
+
+                @if (item.quiz5 == true)
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/tick.jpg" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/incorrect.png" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.quiz6)
+                </dt>
+
+                @if (item.quiz6 == true)
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/tick.jpg" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        <div class="column-tic">
+                            <img src="~/Images/incorrect.png" style="width:20px;height:20px;" />
+                        </div>
+                    </dd>
+                }
+
+            </dl>
+        }
+    }
+    </div>
+    <p>
+
+        @Html.ActionLink("Back to List", "GroupHome", new { id = ViewBag.GiD })
+    </p>

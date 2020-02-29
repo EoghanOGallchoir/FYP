@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FYP.Models.Sound>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.quizID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q_optionID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sound_reference)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.quizID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q_optionID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sound_reference)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.soundID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.soundID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.soundID })
+        </td>
+    </tr>
+}
+
+</table>

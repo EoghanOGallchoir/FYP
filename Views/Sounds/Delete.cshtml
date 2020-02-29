@@ -1,0 +1,49 @@
+﻿@model FYP.Models.Sound
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sound</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quizID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quizID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q_optionID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q_optionID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sound_reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sound_reference)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

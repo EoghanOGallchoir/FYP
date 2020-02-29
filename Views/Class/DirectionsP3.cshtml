@@ -14,83 +14,171 @@
     }
 </style>
 
-<h2>Directions - Adding extra Vocab</h2>
 
-
-
+@if (Model.Qid == 4)
+{
+    <h2>Treoracha - Foclóir a leathnu</h2>
+}
+else if (Model.Qid == 3)
+{
+    <h2>Treoracha - Adding extra Vocab</h2>
+}
+else
+{
+    <h2>Directions - Adding extra Vocab</h2>
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="row">
-        <div class="container" style="margin:0 auto">
+<div class="row">
+    <div class="container" style="margin:0 auto">
 
-            <div class="column">
-                <div class="row">
-                    <h1> @Html.DisplayFor(x => x.Question) </h1>
-                </div>
+        @if (Model.Question_Tr != null)
+        {
 
-                <div class="row">
-                    <h3>@Html.RadioButtonFor(x => x.option1, Model.Qid) @Model.option1</h3>
-                </div>
+            <h1>
+                @Html.DisplayFor(x => x.Question) <audio id="Q">
+                    <source src="~/Sounds/@Model.Question_Tr" type="audio/ogg" />
+                </audio>
+                <a onclick="document.getElementById('Q').play();" onmouseover="" style="cursor: pointer;">
+                    <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                </a>
+            </h1>
 
-                <div class="row">
-                    <h3>@Html.RadioButtonFor(x => x.option2, Model.Qid) @Model.option2</h3>
-                </div>
-
-                <div class="row">
-                    <h3>@Html.RadioButtonFor(x => x.option3, Model.Qid) @Model.option3</h3>
-                </div>
-
-                <div class="row">
-                    <h3>@Html.RadioButtonFor(x => x.option4, Model.Qid) @Model.option4</h3>
-                </div>
-
-                <br />
-                <br />
-                <div class="row">
-                    <input type="submit" value="submit" class="btn btn-success" />
-                </div>
+        }
+        else
+        {
+            <div class="row">
+                <h1> @Html.DisplayFor(x => x.Question) </h1>
             </div>
-            <br />
-            @if (Model.Qid == 4)
+
+        }
+
+
+        <div class="row">
+            @if (Model.Option1_Tr != null)
             {
-                <div class="column">
-                    <div>
-                        <img src="~/Images/church.png" style="height:250px;"/>
-                    </div>
-                </div>
-            }
-            else if (Model.Qid == 5)
-            {
-                <div class="column">
-                    <div>
-                        <img src="~/Images/nature.png" style="height:250px;"/>
-                    </div>
-                </div>
-            }
-            else if (Model.Qid == 6)
-            {
-                <div class="column">
-                    <div>
-                        <img src="~/Images/fish.png" style="height:250px;"/>
-                    </div>
-                </div>
-            }
-            else if (Model.Qid == 2)
-            {
-                <div class="column">
-                    <div>
-                        <img src="~/Images/bar.png" style="height:250px;"/>
-                    </div>
-                </div>
-            }
-            @Html.HiddenFor(x => x.CorrectAns)
+
+                <h3>
+                    @Html.RadioButtonFor(x => x.option1, Model.Qid) @Model.option1<audio id="1">
+                        <source src="~/Sounds/@Model.Option1_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('1').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
 
 
 
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option1, Model.Qid) @Model.option1</h3>
+            }
+        </div>
+        <div class="row">
+            @if (Model.Option2_Tr != null)
+            {
+                <h3>
+                    @Html.RadioButtonFor(x => x.option2, Model.Qid) @Model.option2<audio id="2">
+                        <source src="~/Sounds/@Model.Option2_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option2, Model.Qid) @Model.option2</h3>
+            }
         </div>
 
+        <div class="row">
+            @if (Model.Option3_Tr != null)
+            {
+
+                <h3>
+                    @Html.RadioButtonFor(x => x.option3, Model.Qid) @Model.option3 <audio id="3">
+                        <source src="~/Sounds/@Model.Option3_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('3').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option3, Model.Qid) @Model.option3</h3>
+            }
+        </div>
+
+        <div class="row">
+            @if (Model.Option4_Tr != null)
+            {
+
+                <h3>
+                    @Html.RadioButtonFor(x => x.option4, Model.Qid) @Model.option4 <audio id="4">
+                        <source src="~/Sounds/@Model.Option4_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('4').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option4, Model.Qid) @Model.option4</h3>
+            }
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <input type="submit" value="submit" class="btn btn-success" />
+        </div>
     </div>
+
+    <br />
+    @if (Model.Qid == 4)
+    {
+        <div class="column">
+            <div>
+                <img src="~/Images/church.png" style="height:250px;" />
+            </div>
+        </div>
+    }
+    else if (Model.Qid == 5)
+    {
+        <div class="column">
+            <div>
+                <img src="~/Images/nature.png" style="height:250px;" />
+            </div>
+        </div>
+    }
+    else if (Model.Qid == 6)
+    {
+        <div class="column">
+            <div>
+                <img src="~/Images/fish.png" style="height:250px;" />
+            </div>
+        </div>
+    }
+    else if (Model.Qid == 2)
+    {
+        <div class="column">
+            <div>
+                <img src="~/Images/bar.png" style="height:250px;" />
+            </div>
+        </div>
+    }
+    
+    @Html.HiddenFor(x => x.CorrectAns)
+
+
+
+</div>
+
+    
 }
