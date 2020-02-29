@@ -124,6 +124,8 @@
     <EntitySet Name="DirectionQs" EntityType="msdb5455Model.DirectionQ" />
     <EntitySet Name="DirectionQ2" EntityType="msdb5455Model.DirectionQ2" />
     <EntitySet Name="Users" EntityType="msdb5455Model.User" />
+    <EntitySet Name="VocabLists" EntityType="msdb5455Model.VocabList" />
+    <EntitySet Name="DirectionQ3" EntityType="msdb5455Model.DirectionQ3" />
   </EntityContainer>
   <EntityType Name="DirectionQ">
     <Key>
@@ -163,5 +165,27 @@
     <Property Name="quiz5" Type="Boolean" />
     <Property Name="quiz6" Type="Boolean" />
     <Property Name="GroupId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VocabList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="quizID" Type="Int32" />
+    <Property Name="Irish" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="English" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DirectionQ3">
+    <Key>
+      <PropertyRef Name="Qid" />
+    </Key>
+    <Property Name="Qid" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option4" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CorrectOp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CorrectAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

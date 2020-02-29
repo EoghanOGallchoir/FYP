@@ -8,7 +8,7 @@
     .fop-searchbox {
         position: relative;
         left: 70%;
-        top: -80px;
+        top: -40px;
     }
 
     .fop-submit-btn {
@@ -16,6 +16,8 @@
         bottom: 10px;
         border-radius: 25px;
     }
+    
+    
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -24,9 +26,6 @@
 <body onload="setupSearchBox('formname', 'https://www.focloir.ie/', 'en');">
 
     <div class="row">
-        <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
-            Asking For Directions
-        </a>
 
         <form class="fop-searchbox" id="formname" name="formname" method="get" autocomplete="off">
             <input class="fop-textbox" name="q" placeholder="Search an English word..." type="text" ; />
@@ -36,14 +35,21 @@
     <br />
 
     <div class="row">
-        <a role="button" class="btn btn-primary btn-lg" href="~/Class/FootballStart">
-            Listening to Football
-        </a>
+        <div class="column">
+            <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
+                Asking For Directions
+            </a>
+        </div>
+        <br />
+        <div class="column">
+            <a role="button" class="btn btn-primary btn-lg" href="~/Class/FootballStart">
+                Listening to Football
+            </a>
+        </div>
+        <br />
     </div>
-    <br />
 
 
-   
 
 </body>
 

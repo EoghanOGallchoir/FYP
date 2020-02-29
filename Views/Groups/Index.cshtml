@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FYP.Models.Group>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupPass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupPass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GroupID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GroupID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GroupID })
+        </td>
+    </tr>
+}
+
+</table>

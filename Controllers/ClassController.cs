@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using System.Globalization;
+using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace FYP.Controllers
 {
@@ -23,93 +25,60 @@ namespace FYP.Controllers
 
         public ActionResult DirectionStart()
         {
+
             TempData["Score"] = 0;
             TempData["Score2"] = 0;
+            TempData["Score3"] = 0;
             TempData["qID"] = 1;
             TempData["q2ID"] = 1;
-            return View();
-        }
-
-        public ActionResult DirectionsBasics()
-        {
-            return View();
-        }
-
-        public ActionResult DirQuiz()
-        {
-            //  List<DirectionQ> DQ = new List<DirectionQ>();
-            if (TempData["i"] == null)
+            TempData["q3ID"] = 1;
+            TempData.Keep();
+            List<User> user = new List<User>();
+            foreach (var u in db.Users)
             {
-                TempData["i"] = 1;
+                user.Add(u);
             }
 
-            try
-            {
-                DirectionQ q = null;
-
-                if (TempData["qid"] == null)
-                {
-
-                    q = db.DirectionQs.First();
-                    var list = db.DirectionQs.Skip(Convert.ToInt32(TempData["i"].ToString()));
-                    int qid = list.First().Qid;
-                    TempData["qid"] = qid;
-                }
-                else
-                {
-                    int qid = Convert.ToInt32(TempData["qid"].ToString());
-                    q = db.DirectionQs.Where(x => x.Qid == qid).SingleOrDefault();
-
-
-                    TempData["qid"] = qid;
-                    TempData["i"] = Convert.ToInt32(TempData["i"].ToString()) + 1;
-                }
-                TempData.Keep();
-                return View(q);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("DirectionStart");
-
-            }
-
+            return View(user);
+            
         }
 
-        [HttpPost]
-        public ActionResult DirQuiz(DirectionQ q)
-        {
-            return RedirectToAction("DirQuiz");
-        }
-
+   
         public ActionResult DirectionsP1()
         {
+            string userName = User.Identity.GetUserName();
+            //var result = db.Users.SingleOrDefault(s => s.UserName == userName);
+            
+                if (TempData["qID"] == null)
+                {
+                    TempData["qID"] = 1;
+                }
 
-            if (TempData["qID"] == null)
-            {
-                TempData["qID"] = 1;
-            }
+                try
+                {
+                    DirectionQ q = null;
+                    int qID = Convert.ToInt32(TempData["qID"].ToString());
+                    q = db.DirectionQs.Where(x => x.Qid == qID).SingleOrDefault();
+                    TempData["qID"] = ++q.Qid;
+                    TempData.Keep();
+                    Debug.WriteLine("before: " + q.CorrectAns);
+                    return View(q);
+                }
+                catch (Exception)
+                {
+                    TempData["qID"] = 1;
+                    TempData.Keep();
+                    return RedirectToAction("ResultsD1");
+                }
 
-            try
-            {
-                DirectionQ q = null;
-                int qID = Convert.ToInt32(TempData["qID"].ToString());
-                q = db.DirectionQs.Where(x => x.Qid == qID).SingleOrDefault();
-                TempData["qID"] = ++q.Qid;
-                TempData.Keep();
-                Debug.WriteLine("before: " + q.CorrectAns);
-                return View(q);
-            }
-            catch (Exception)
-            {
-                TempData["qID"] = 1;
-                return RedirectToAction("ResultsD1");
-            }
-        }
+          
+        
+    }
 
-        [HttpPost]
+        [HttpPost]  
         public ActionResult DirectionsP1(DirectionQ q)
         {
-
+            
             Debug.WriteLine("After: " + q.CorrectAns);
             string attemptedAns = null;
             if (q.option1 != null)
@@ -131,32 +100,156 @@ namespace FYP.Controllers
 
             if (attemptedAns.Equals(q.CorrectAns))
             {
+                
                 TempData["Score"] = Convert.ToInt32(TempData["Score"]) + 1;
+                Debug.WriteLine("Entered " + TempData["Score"]);
             }
-
+        
             if (q.CorrectAns == null)
             {
                 Debug.WriteLine("answer was passed in as null");
             }
 
+
+           
+            TempData.Keep();
+
             if (Convert.ToInt32(TempData["Score"]) == 4)
             {
-                //set quiz1 in user table to true, add to progressXP
-             
+                if (ModelState.IsValid)
+                 {
+                Debug.WriteLine("Model Valid");
+               // TempData.Keep();
+                Debug.WriteLine(TempData["Score"]);
+                //Debug.WriteLine(scoreq);
+                string userId = User.Identity.GetUserName();
+                Debug.WriteLine("user.id.guid: " + userId);
+                
+                    try
+                    {
+                        using (var db = new msdb5455Entities())
+                        {
+                            var result = db.Users.SingleOrDefault(s => s.UserName == userId);
+                            Debug.WriteLine("null? " + result);
+                            if(result.ProgressXP == null)
+                            {
+                                result.ProgressXP = 0;
+                            }
+                            if (result != null) // if result is null then there is no student in the db with that id 
+                            {
+                                Debug.WriteLine("true? "+result);
+                                if (result.quiz1 != true)
+                                {
+                                    result.ProgressXP = result.ProgressXP + 10;
+                                    Debug.WriteLine("progress incremented:" + result.ProgressXP);
+                                    result.quiz1 = true;
+                                    db.SaveChanges();
+                                  //  RedirectToAction("DirectionStart");
+                                }
+                               // RedirectToAction("DirectionStart");
+                            }
+
+                        }
+
+
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                    }
+                }
             }
-            TempData.Keep();
             return RedirectToAction("DirectionsP1");
 
+          
+
         }
+
 
         public ActionResult ResultsD1()
         {
-
+            TempData.Keep();
+            ViewBag.Score = TempData["Score"];
             return View();
         }
 
+        /*
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResultsD1([Bind(Include = "Id,ProgressXP,quiz1")] User user)
+        {
+            Debug.WriteLine("Entering post");
+           // var scoreq = Request["score1"];
+            if (ModelState.IsValid)
+            {
+                Debug.WriteLine("Model Valid");
+                TempData.Keep();
+                Debug.WriteLine(TempData["Score"]);
+                //Debug.WriteLine(scoreq);
+                string userId = User.Identity.GetUserName();
+                Debug.WriteLine("user.id.guid: " + userId);
+                if (Convert.ToInt32(TempData["Score"]) == 4)
+                {
+                    try
+                    {
+                        using (var db = new msdb5455Entities())
+                        {
+                            var result = db.Users.SingleOrDefault(s => s.UserName == userId);
+                            Debug.WriteLine("null? " + result);
+                            if (result != null) // if result is null then there is no student in the db with that id 
+                            {
+                                if (result.quiz1 != true)
+                                {
+                                    result.ProgressXP = result.ProgressXP + 10;
+                                    result.quiz1 = true;
+                                    db.SaveChanges();
+                                    RedirectToAction("DirectionStart");
+                                }
+                                RedirectToAction("DirectionStart");
+                            }
+
+                        }
+
+
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                    }
+                }
+            }
+            return View(user);
+        }
+        */
         public ActionResult DirectionsP2()
         {
+           
             if (TempData["q2ID"] == null)
             {
                 TempData["q2ID"] = 1;
@@ -210,6 +303,64 @@ namespace FYP.Controllers
             TempData.Keep();
 
 
+            if (Convert.ToInt32(TempData["Score2"]) == 4)
+            {
+                if (ModelState.IsValid)
+                {
+                    Debug.WriteLine("Model Valid");
+                    TempData.Keep();
+                    Debug.WriteLine(TempData["Score2"]);
+                    //Debug.WriteLine(scoreq);
+                    string userId = User.Identity.GetUserName();
+                    Debug.WriteLine("user.id.guid: " + userId);
+                
+                    try
+                    {
+                        using (var db = new msdb5455Entities())
+                        {
+                            var result = db.Users.SingleOrDefault(s => s.UserName == userId);
+                            Debug.WriteLine("null? " + result);
+                            if(result.ProgressXP == null)
+                            {
+                                result.ProgressXP = 0;
+                            }
+                            if (result != null) // if result is null then there is no student in the db with that id 
+                            {
+                                if (result.quiz2 != true)
+                                {
+                                    result.ProgressXP = result.ProgressXP + 10;
+                                    result.quiz2 = true;
+                                    db.SaveChanges();
+                                   // RedirectToAction("DirectionStart");
+                                }
+                              //  RedirectToAction("DirectionStart");
+                            }
+
+                        }
+
+
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                    }
+                }
+            }
+            //return View(user);
+
             return RedirectToAction("DirectionsP2");
         }
 
@@ -219,5 +370,145 @@ namespace FYP.Controllers
             return View();
         }
 
+
+        public ActionResult DirectionsP3()
+        {
+            if (TempData["q3ID"] == null)
+            {
+                TempData["q3ID"] = 1;
+            }
+
+            try
+            {
+                DirectionQ3 q = null;
+                int q3ID = Convert.ToInt32(TempData["q3ID"].ToString());
+                q = db.DirectionQ3.Where(x => x.Qid == q3ID).SingleOrDefault();
+                TempData["q3ID"] = ++q.Qid;
+                TempData.Keep();
+                Debug.WriteLine("before: " + q.CorrectOp);
+                return View(q);
+            }
+            catch (Exception)
+            {
+                TempData["q3ID"] = 1;
+                TempData.Keep();
+                return RedirectToAction("ResultsD3");
+            }
+
+           // return View();
+        }
+
+        [HttpPost]
+        public ActionResult DirectionsP3(DirectionQ3 q)
+        {
+
+            Debug.WriteLine("After: " +q.CorrectAns);
+            string attemptedAns = null;
+          
+            if (q.option1 != null)
+            {
+                attemptedAns = "A";
+            }
+            else if (q.option2 != null)
+            {
+                attemptedAns = "B";
+            }
+            else if (q.option3 != null)
+            {
+                attemptedAns = "C";
+            }
+            else if (q.option4 != null)
+            {
+                attemptedAns = "D";
+            }
+            Debug.WriteLine("ans: " + attemptedAns);
+            Debug.WriteLine("correct: " + q.CorrectAns);
+
+            
+
+            if (attemptedAns.Equals(q.CorrectAns))
+            {
+                Debug.WriteLine("in adding");
+                TempData["Score3"] = Convert.ToInt32(TempData["Score3"]) + 1;
+                Debug.WriteLine("Entered " + TempData["Score3"]);
+            }
+            Debug.WriteLine(TempData["Score3"]);
+            if (q.CorrectOp == null)
+            {
+                Debug.WriteLine("answer was passed in as null");
+            }
+
+
+
+            TempData.Keep();
+
+            if (Convert.ToInt32(TempData["Score3"]) == 4)
+            {
+                if (ModelState.IsValid)
+                {
+                    Debug.WriteLine("Model Valid");
+                    // TempData.Keep();
+                    Debug.WriteLine(TempData["Score3"]);
+                    //Debug.WriteLine(scoreq);
+                    string userId = User.Identity.GetUserName();
+                    Debug.WriteLine("user.id.guid: " + userId);
+
+                    try
+                    {
+                        using (var db = new msdb5455Entities())
+                        {
+                            var result = db.Users.SingleOrDefault(s => s.UserName == userId);
+                            Debug.WriteLine("null? " + result);
+                            if (result.ProgressXP == null)
+                            {
+                                result.ProgressXP = 0;
+                            }
+                            if (result != null) // if result is null then there is no student in the db with that id 
+                            {
+                                Debug.WriteLine("true? " + result);
+                                if (result.quiz3 != true)
+                                {
+                                    result.ProgressXP = result.ProgressXP + 10;
+                                    Debug.WriteLine("progress incremented:" + result.ProgressXP);
+                                    result.quiz3 = true;
+                                    db.SaveChanges();
+                                    //  RedirectToAction("DirectionStart");
+                                }
+                                // RedirectToAction("DirectionStart");
+                            }
+
+                        }
+
+
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                    }
+                }
+            }
+            return RedirectToAction("DirectionsP3");
+        }
+
+        public ActionResult ResultsD3()
+        {
+            return View();
+        }
     }
+
+   
+
 }

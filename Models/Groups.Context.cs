@@ -34,7 +34,7 @@ namespace FYP.Models
         public virtual DbSet<DirectionQ> DirectionQs { get; set; }
         public virtual DbSet<DirectionQ2> DirectionQ2 { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
-        public System.Data.Entity.DbSet<FYP.Models.Member> Members { get; set; }
+        public virtual DbSet<VocabList> VocabLists { get; set; }
+        public virtual DbSet<DirectionQ3> DirectionQ3 { get; set; }
     }
 }

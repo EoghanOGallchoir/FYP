@@ -27,12 +27,12 @@ namespace FYP.Controllers
         {
             using (var context = new msdb5455Entities())
             {
-                bool exists = context.Users.Any(x => x.UserName == model.UserName);
+                bool exists = context.Users.Any(x => x.Id == model.Id);
                 Debug.WriteLine("Exist?: " + exists);
                 if (exists)
                 {
                     RedirectToAction("Register");
-                   
+
                 }
                 else
                 {
@@ -42,7 +42,7 @@ namespace FYP.Controllers
                 }
                 ModelState.AddModelError("", "username in use");
             }
-            
+
             return View();
         }
 
@@ -57,6 +57,8 @@ namespace FYP.Controllers
                 {
                     Debug.WriteLine("inside check");
                     FormsAuthentication.SetAuthCookie(model.UserName, false);
+                    TempData["ID"] = model.Id;
+                    TempData.Keep();
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Invalid email and/or password");

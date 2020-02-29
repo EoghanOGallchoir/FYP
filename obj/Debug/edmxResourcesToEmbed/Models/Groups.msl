@@ -118,5 +118,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="VocabLists">
+      <EntityTypeMapping TypeName="msdb5455Model.VocabList">
+        <MappingFragment StoreEntitySet="VocabList">
+          <ScalarProperty Name="English" ColumnName="English" />
+          <ScalarProperty Name="Irish" ColumnName="Irish" />
+          <ScalarProperty Name="quizID" ColumnName="quizID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DirectionQ3">
+      <EntityTypeMapping TypeName="msdb5455Model.DirectionQ3">
+        <MappingFragment StoreEntitySet="DirectionQ3">
+          <ScalarProperty Name="CorrectAns" ColumnName="CorrectAns" />
+          <ScalarProperty Name="CorrectOp" ColumnName="CorrectOp" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Qid" ColumnName="Qid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

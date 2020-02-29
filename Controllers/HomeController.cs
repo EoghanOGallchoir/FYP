@@ -22,7 +22,7 @@ namespace WebApplication3.Controllers
             {
                 user.Add(u);
             }
-           
+
             return View(user);
         }
 

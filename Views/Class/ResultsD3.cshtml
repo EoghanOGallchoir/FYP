@@ -4,14 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Results of Direction sentence building</h2>
+<h2>Results of Directions: Additional Vocabulary</h2>
 
 <body>
-    @if (Convert.ToInt32(TempData["Score2"]) == 4)
+
+    @if (Convert.ToInt32(TempData["Score3"]) == 4)
     {
         <div>
 
-            <h1>Your score is @TempData["Score2"]</h1>
+            <h1>Your score is @TempData["Score3"]</h1>
             <br />
             <h1>Your Progress will be updated</h1>
         </div>
@@ -20,14 +21,16 @@
     else
     {
         <div>
-            <h1>You scored @TempData["Score2"]/4. You will need 4/4 to progress on from this class.</h1>
+            <h1>You scored @TempData["Score3"]/4. You will need 4/4 to progress on from this class.</h1>
         </div>
     }
+
 
     <div>
         <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
             Return to Directions Home
         </a>
     </div>
+
 </body>
 

@@ -16,7 +16,9 @@
         <AssociationConnector Association="msdb5455Model.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="msdb5455Model.DirectionQ" Width="1.5" PointX="8.125" PointY="2.125" />
         <EntityTypeShape EntityType="msdb5455Model.DirectionQ2" Width="1.5" PointX="9.875" PointY="2.125" />
-        <EntityTypeShape EntityType="msdb5455Model.User" Width="1.5" PointX="3.75" PointY="1.125" />
+        <EntityTypeShape EntityType="msdb5455Model.User" Width="1.5" PointX="2" PointY="1" />
+        <EntityTypeShape EntityType="msdb5455Model.VocabList" Width="1.5" PointX="4.5" PointY="3.25" />
+        <EntityTypeShape EntityType="msdb5455Model.DirectionQ3" Width="1.5" PointX="11.625" PointY="2.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,99 @@
+﻿@model FYP.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProgressXP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgressXP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quiz1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quiz1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quiz2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quiz2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quiz3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quiz3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quiz4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quiz4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quiz5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quiz5)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quiz6)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quiz6)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

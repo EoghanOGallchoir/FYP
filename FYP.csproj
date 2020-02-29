@@ -215,6 +215,9 @@
     <Compile Include="Models\DirectionQ2.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DirectionQ3.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Group.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
@@ -239,8 +242,13 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VocabList.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\GroupsController.cs" />
+    <Compile Include="Views\UsersController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -251,6 +259,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bar.png" />
+    <Content Include="Images\church.png" />
+    <Content Include="Images\fish.png" />
+    <Content Include="Images\nature.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\search2.jpg" />
     <Content Include="Images\tick.jpg" />
@@ -317,11 +329,22 @@
     <Content Include="Views\DirectionQs\Index.cshtml" />
     <Content Include="Views\Class\DirectionsP2.cshtml" />
     <Content Include="Views\Home\TestView.cshtml" />
-    <Content Include="Views\Class\DirQuiz.cshtml" />
     <Content Include="Views\Class\ResultsD1.cshtml" />
     <Content Include="Views\Class\ResultsD2.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Groups\Create.cshtml" />
+    <Content Include="Views\Groups\Delete.cshtml" />
+    <Content Include="Views\Groups\Details.cshtml" />
+    <Content Include="Views\Groups\Edit.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Class\DirectionsP3.cshtml" />
+    <Content Include="Views\Class\ResultsD3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
