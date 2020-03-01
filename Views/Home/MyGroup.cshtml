@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FYP.Models.User>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Grúpa @User.Identity.Name</h2>
+@foreach (var item in Model)
+{
+    if (item.UserName == User.Identity.GetUserName())
+    {
+        if (item.GroupId == null)
+        {
+            <p>Not part of a Group! Create one @Html.ActionLink("here", "Create", "Groups")</p>
+        }
+        else
+        {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProgressXP)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.GroupId)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item2 in Model)
+                {
+                    if (item2.UserName != User.Identity.GetUserName())
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item2.UserName)
+                            </td>
+
+                            <td>
+                                @if (item2.ProgressXP != null)
+                                {
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:@item2.ProgressXP%">
+                                            @item2.ProgressXP%
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h5>No Progress Logged Yet!</h5>
+                                }
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item2.GroupId)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item2.Id })
+                            </td>
+                        </tr>
+                    }
+
+                }
+
+            </table>
+        }
+    }
+}
+
+@Html.ActionLink("Leave Group", "Leave")

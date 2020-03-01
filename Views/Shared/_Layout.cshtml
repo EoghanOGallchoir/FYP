@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model IEnumerable<FYP.Models.User>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,34 +67,26 @@
                     <li>@Html.ActionLink("Foghlaim", "Learn", "Home")</li>
                     <li>@Html.ActionLink("Foclóir", "Vocab", "Home")</li>
                     <li></li>
-                    @if (User.Identity.IsAuthenticated == true)
-                    {
-
-                        foreach (var item in Model)
-                        {
-                            if (User.Identity.GetUserName() == item.UserName)
-                            {
-                                <li>@Html.ActionLink("Groups", "GroupHome",  new { id = item.GroupId })</li>
-
-                            }
-                        }
-                    }
+                    <li>@Html.ActionLink("Groups", "GroupHome", "Home")</li>
+                    <li></li>
+                 
+                 
                 </ul>
-                            @Html.Partial("_LoginPartial")
-                        </div>
-                    </div>
-                </div>
-                <div class="container body-content">
-                    @RenderBody()
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
 
-                    <hr />
-                    <footer>
-                        <p>&copy; @DateTime.Now.Year - Teanga</p>
-                    </footer>
-                </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Teanga</p>
+        </footer>
+    </div>
 
-                @Scripts.Render("~/bundles/jquery")
-                @Scripts.Render("~/bundles/bootstrap")
-                @RenderSection("scripts", required: false)
-            </body>
-        </html>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

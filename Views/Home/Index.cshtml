@@ -28,11 +28,14 @@
     <h5>Overall Progress:</h5>
     @if (User.Identity.IsAuthenticated == true)
     {
-
+        
         foreach (var item in Model)
         {
             if (User.Identity.GetUserName() == item.UserName)
             {
+
+                
+
                 if (item.ProgressXP != null)
                 {
                     <div class="progress">
@@ -41,6 +44,7 @@
                             @item.ProgressXP%
                         </div>
                     </div>
+                
                 }
                 else
                 {

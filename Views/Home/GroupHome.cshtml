@@ -1,55 +1,45 @@
-﻿@model IEnumerable<FYP.Models.User>
+﻿@model IEnumerable<FYP.Models.Group>
 @using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Group Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Grúpa @User.Identity.Name</h2>
+<h2>Group Home Page</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Groups")
+</p>
+
+<p>
+    @Html.ActionLink("My Group", "MyGroup", new { id = User.Identity.GetUserName() })
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.GName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProgressXP)
+            @Html.DisplayNameFor(model => model.GroupID)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.GroupId)
-        </th>
 
-        <th></th>
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => item.GName)
             </td>
-
+           
             <td>
-                @if (item.ProgressXP != null)
-                {
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar"
-                             aria-valuemin="0" aria-valuemax="100" style="width:@item.ProgressXP%">
-                            @item.ProgressXP%
-                        </div>
-                    </div>
-                }
-                else
-                {
-                   <h5>No Progress Logged Yet!</h5>
-                }
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupId)
+                @Html.DisplayFor(modelItem => item.GroupID)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Join", "Join", new { id = item.GroupID }) 
             </td>
         </tr>
     }

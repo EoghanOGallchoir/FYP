@@ -20,6 +20,13 @@ namespace FYP.Models
         public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
 
+
+    public class UandMModel
+    {
+        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<Group> Groups { get; set; }
+    }
+
     public class FactorViewModel
     {
         public string Purpose { get; set; }
