@@ -35,7 +35,7 @@ namespace FYP.Models
         public virtual DbSet<VocabList> VocabLists { get; set; }
         public virtual DbSet<DirectionQ3> DirectionQ3 { get; set; }
         public virtual DbSet<Sound> Sounds { get; set; }
-        public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
     }
 }

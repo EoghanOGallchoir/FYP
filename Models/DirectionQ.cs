@@ -26,5 +26,6 @@ namespace FYP.Models
         public string Option2_Tr { get; set; }
         public string Option3_Tr { get; set; }
         public string Option4_Tr { get; set; }
+        public string notacol { get; set; }
     }
 }

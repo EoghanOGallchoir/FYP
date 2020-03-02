@@ -74,4 +74,19 @@
     }
 }
 
-@Html.ActionLink("Leave Group", "Leave")
+@foreach (var item2 in Model)
+{
+    if (item2.UserName == User.Identity.GetUserName())
+    {
+        @Html.ActionLink("Leave Group", "Leave", new { id = item2.GroupId })
+    }
+    <br />
+    <br />
+    if (item2.isCreator == true)
+    {
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Groups", new { id = item2.GroupId }, null) |
+            @Html.ActionLink("Delete", "Delete", "Groups", new { id = item2.GroupId }, null)
+        </td>
+    }
+}

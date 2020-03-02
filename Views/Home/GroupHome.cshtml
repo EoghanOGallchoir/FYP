@@ -1,5 +1,6 @@
-﻿@model IEnumerable<FYP.Models.Group>
+﻿@model PagedList.IPagedList<FYP.Models.Group>
 @using Microsoft.AspNet.Identity
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Group Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,13 +15,22 @@
 <p>
     @Html.ActionLink("My Group", "MyGroup", new { id = User.Identity.GetUserName() })
 </p>
+
+@using (Html.BeginForm("GroupHome", "Home", FormMethod.Get))
+{
+    <p align="right">
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GName)
+            Group Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GroupID)
+            @Html.ActionLink("Group ID", "GroupHome", new { sortOrder = ViewBag.IdSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
 
         <th>
@@ -34,14 +44,26 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GName)
             </td>
-           
+
             <td>
                 @Html.DisplayFor(modelItem => item.GroupID)
             </td>
+            
             <td>
-                @Html.ActionLink("Join", "Join", new { id = item.GroupID }) 
+                @Html.ActionLink("Join", "Join", new { id = item.GroupID })
             </td>
+            
         </tr>
     }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GroupHome",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+

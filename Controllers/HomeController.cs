@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using PagedList;
 
 namespace WebApplication3.Controllers
 {
@@ -28,22 +29,54 @@ namespace WebApplication3.Controllers
             return View(user);
         }
 
-        public ActionResult About()
-        {
-            var model = db.Sounds.ToList();
-            return View(model);
 
-        }
-
-        public ActionResult GroupHome()
+        public ActionResult GroupHome(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            List <Group> groups = new List<Group>();
-            foreach (var u in db.Groups)
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+
+            if (searchString != null)
             {
-                groups.Add(u);
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
             }
 
-            return View(groups);
+            ViewBag.CurrentFilter = searchString;
+
+            var group = from s in db.Groups
+                           select s;
+
+            var id = User.Identity.GetUserName();
+
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                group = group.Where(s => s.GName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    group = group.OrderByDescending(s => s.GName);
+                    break;
+                case "id_desc":
+                    group = group.OrderByDescending(s => s.GroupID);
+                    break;
+                default: // Not: case "Default"
+                    group = group.OrderBy(x => x.GName);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            // return View(students.ToPagedList(pageNumber, pageSize));
+           
+
+            return View(group.ToPagedList(pageNumber, pageSize));
 
         }
 
@@ -52,12 +85,13 @@ namespace WebApplication3.Controllers
                       
             var q = db.Users.Where(x => x.UserName == id).Select(x => x.GroupId);
 
-
+         
 
             Debug.WriteLine("someting: "+q);
 
             return View(db.Users.Where(x => x.GroupId == q.FirstOrDefault()));
         }
+
 
         public ActionResult Join(int? id)
         {
@@ -79,31 +113,70 @@ namespace WebApplication3.Controllers
                 Debug.WriteLine("check:" + isValid);
                 if (isValid == true)
                 {
+                    
                     Debug.WriteLine("inside check");
                     string userId = User.Identity.GetUserName();
                     Debug.WriteLine("user: " + userId);
                     var result = db.Users.SingleOrDefault(s => s.UserName == userId);
-                    Debug.WriteLine("result.Gid: "+result.GroupId);
-                    result.GroupId = id;
-                    Debug.WriteLine("model.gid: "+ result.GroupId);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    if (result.GroupId == id)
+                    {
+                        RedirectToAction("GroupHome", "Home");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("result.Gid: " + result.GroupId);
+                        result.GroupId = id;
+                        Debug.WriteLine("model.gid: " + result.GroupId);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 ModelState.AddModelError("", "Invalid password");
             }
             return View();
         }
 
-        public ActionResult Leave()
-        {
-            //are you sure etc.
-            return View();
-        }
-
-        [HttpPost]
         public ActionResult Leave(int? id)
         {
+            ViewBag.GroupID = id;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = db.Groups.Find(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            return View(group);
+        }
 
+        [HttpPost, ActionName("Leave")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Leave(int id)
+        {
+
+            int Gid = id;
+            Debug.WriteLine("g id:" + Gid);
+          
+            using (var context = new msdb5455Entities())
+            {
+                bool isValid = context.Groups.Any(x => x.GroupID == Gid);
+                Debug.WriteLine("check:" + isValid);
+                if (isValid == true)
+                {
+                    Debug.WriteLine("inside check");
+                    string userId = User.Identity.GetUserName();
+                    Debug.WriteLine("user: " + userId);
+                    var result = db.Users.SingleOrDefault(s => s.UserName == userId);
+                    Debug.WriteLine("result.Gid: " + result.GroupId);
+                    result.GroupId = null;
+                    Debug.WriteLine("model.gid: " + result.GroupId);
+                    db.SaveChanges();
+                    return RedirectToAction("GroupHome", "Home");
+                }
+               
+            }
             return View();
         }
 
@@ -151,7 +224,10 @@ namespace WebApplication3.Controllers
             return View(user);
         }
 
-        
+        public ActionResult GroupChat()
+        {
+            return View();
+        }
 
     }
 }

@@ -62,7 +62,7 @@ else
             {
 
                 <h3>
-                    @Html.RadioButtonFor(x => x.option1, Model.Qid) @Model.option1<audio id="1">
+                    @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1<audio id="1">
                         <source src="~/Sounds/@Model.Option1_Tr" type="audio/ogg" />
                     </audio>
                     <a onclick="document.getElementById('1').play();" onmouseover="" style="cursor: pointer;">
@@ -75,24 +75,24 @@ else
             }
             else
             {
-                <h3> @Html.RadioButtonFor(x => x.option1, Model.Qid) @Model.option1</h3>
+        <h3> @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1</h3>
             }
         </div>
         <div class="row">
             @if (Model.Option2_Tr != null)
             {
-                <h3>
-                    @Html.RadioButtonFor(x => x.option2, Model.Qid) @Model.option2<audio id="2">
-                        <source src="~/Sounds/@Model.Option2_Tr" type="audio/ogg" />
-                    </audio>
-                    <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
-                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
-                    </a>
-                </h3>
+            <h3>
+                @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2<audio id="2">
+                    <source src="~/Sounds/@Model.Option2_Tr" type="audio/ogg" />
+                </audio>
+                <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
+                    <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                </a>
+            </h3>
             }
             else
             {
-                <h3> @Html.RadioButtonFor(x => x.option2, Model.Qid) @Model.option2</h3>
+                <h3> @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2</h3>
             }
         </div>
 
@@ -101,7 +101,7 @@ else
             {
 
                 <h3>
-                    @Html.RadioButtonFor(x => x.option3, Model.Qid) @Model.option3 <audio id="3">
+                    @Html.RadioButtonFor(x => x.option3, Model.option3, new { @Name = "Model.Qid" }) @Model.option3 <audio id="3">
                         <source src="~/Sounds/@Model.Option3_Tr" type="audio/ogg" />
                     </audio>
                     <a onclick="document.getElementById('3').play();" onmouseover="" style="cursor: pointer;">
@@ -111,7 +111,7 @@ else
             }
             else
             {
-                <h3> @Html.RadioButtonFor(x => x.option3, Model.Qid) @Model.option3</h3>
+                <h3> @Html.RadioButtonFor(x => x.option3, Model.option3, new { @Name = "Model.Qid" }) @Model.option3</h3>
             }
         </div>
 
@@ -120,7 +120,7 @@ else
             {
 
                 <h3>
-                    @Html.RadioButtonFor(x => x.option4, Model.Qid) @Model.option4 <audio id="4">
+                    @Html.RadioButtonFor(x => x.option4, Model.option4, new { @Name = "Model.Qid" }) @Model.option4 <audio id="4">
                         <source src="~/Sounds/@Model.Option4_Tr" type="audio/ogg" />
                     </audio>
                     <a onclick="document.getElementById('4').play();" onmouseover="" style="cursor: pointer;">
@@ -130,7 +130,7 @@ else
             }
             else
             {
-                <h3> @Html.RadioButtonFor(x => x.option4, Model.Qid) @Model.option4</h3>
+                <h3> @Html.RadioButtonFor(x => x.option4, Model.option4, new { @Name = "Model.Qid" }) @Model.option4</h3>
             }
         </div>
         <br />

@@ -69,6 +69,7 @@
     <EntitySetMapping Name="DirectionQs">
       <EntityTypeMapping TypeName="msdb5455Model.DirectionQ">
         <MappingFragment StoreEntitySet="DirectionQ">
+          <ScalarProperty Name="notacol" ColumnName="notacol" />
           <ScalarProperty Name="Option4_Tr" ColumnName="Option4_Tr" />
           <ScalarProperty Name="Option3_Tr" ColumnName="Option3_Tr" />
           <ScalarProperty Name="Option2_Tr" ColumnName="Option2_Tr" />
@@ -139,19 +140,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Groups">
-      <EntityTypeMapping TypeName="msdb5455Model.Group">
-        <MappingFragment StoreEntitySet="Groups">
-          <ScalarProperty Name="GName" ColumnName="GName" />
-          <ScalarProperty Name="GSize" ColumnName="GSize" />
-          <ScalarProperty Name="GroupPass" ColumnName="GroupPass" />
-          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="msdb5455Model.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="isCreator" ColumnName="isCreator" />
           <ScalarProperty Name="GroupId" ColumnName="GroupId" />
           <ScalarProperty Name="quiz6" ColumnName="quiz6" />
           <ScalarProperty Name="quiz5" ColumnName="quiz5" />
@@ -163,6 +155,17 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="msdb5455Model.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="GName" ColumnName="GName" />
+          <ScalarProperty Name="GSize" ColumnName="GSize" />
+          <ScalarProperty Name="GroupPass" ColumnName="GroupPass" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

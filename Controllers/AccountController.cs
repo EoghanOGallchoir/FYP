@@ -27,7 +27,7 @@ namespace FYP.Controllers
         {
             using (var context = new msdb5455Entities())
             {
-                bool exists = context.Users.Any(x => x.Id == model.Id);
+                bool exists = context.Users.Any(x => x.UserName == model.UserName);
                 Debug.WriteLine("Exist?: " + exists);
                 if (exists)
                 {

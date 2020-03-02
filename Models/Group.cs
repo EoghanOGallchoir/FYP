@@ -24,6 +24,7 @@ namespace FYP.Models
         public string GroupPass { get; set; }
         public int GSize { get; set; }
         public string GName { get; set; }
+        public string Creator { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

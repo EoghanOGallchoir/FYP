@@ -18,15 +18,15 @@
 
             if (item.quiz1 == true && item.quiz2 == true && item.quiz3 == true)
             {
-                <h2>Foghlaim Treoracha!</h2>
+                <h2>Foghlaim Treoracha!  <img src="~/Images/Directions.png" style="height:40px;width:40px" /></h2>
             }
             else if (item.quiz1 == true && item.quiz2 == true)
-            {
-                <h2>Foghlaim Treoracha!</h2>
+            {   
+                <h2>Foghlaim Treoracha!  <img src="~/Images/Directions.png" style="height:40px;width:40px" /></h2>
             }
             else
             {
-                <h2>Start learning directions!</h2>
+                <h2>Start learning directions!  <img src="~/Images/Directions.png" style="height:40px;width:40px" /></h2>
             }
         }
     }
@@ -52,13 +52,18 @@
         width: auto;
         padding: -5px;
     }
+
+    .twitter-line {
+        width: 450px;
+        position: relative;
+        right: -30%;
+    }
 </style>
 
 
 @if (User.Identity.IsAuthenticated == true)
 {
-
-    foreach (var item in Model)
+     foreach (var item in Model)
     {
         if (User.Identity.GetUserName() == item.UserName)
         {
@@ -227,5 +232,6 @@
             }
         }
     }
+
 
 </body>

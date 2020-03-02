@@ -48,7 +48,7 @@ namespace FYP.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupID,GroupPass,GSize,GName")] Group group)
+        public ActionResult Create([Bind(Include = "GroupPass,GSize,GName,Creator")] Group group)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +62,8 @@ namespace FYP.Views
                     {
                         Debug.WriteLine("result: "+ result.GroupId + "group: " + group.GroupID);
                         result.GroupId = group.GroupID;
+                        group.Creator = result.UserName;
+                        result.isCreator = true;
                         db.Groups.Add(group);
                         db.SaveChanges();
                         return RedirectToAction("GroupHome", "Home");
@@ -124,9 +126,22 @@ namespace FYP.Views
         public ActionResult DeleteConfirmed(int id)
         {
             Group group = db.Groups.Find(id);
+          
+            string userId = User.Identity.GetUserName();
+           
+            using (var context = new msdb5455Entities())
+            {
+                bool isValid = context.Users.Any(x => x.UserName == userId);
+                var result = db.Users.SingleOrDefault(s => s.GroupId == id);
+                if (isValid == true)
+                {
+                    result.GroupId = null;
+                    result.isCreator = false;
+                }
+            }
             db.Groups.Remove(group);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("GroupHome", "Home");
         }
 
         protected override void Dispose(bool disposing)

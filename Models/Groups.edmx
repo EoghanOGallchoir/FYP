@@ -75,7 +75,7 @@
           <Property Name="Qid" Type="int" Nullable="false" />
           <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
           <Property Name="option1" Type="nvarchar" MaxLength="50" />
-          <Property Name="option2" Type="nchar" MaxLength="50" />
+          <Property Name="notacol" Type="nchar" MaxLength="50" />
           <Property Name="option3" Type="nvarchar" MaxLength="50" />
           <Property Name="option4" Type="nvarchar" MaxLength="50" />
           <Property Name="CorrectAns" Type="nvarchar" MaxLength="50" />
@@ -84,6 +84,7 @@
           <Property Name="Option2_Tr" Type="nvarchar(max)" />
           <Property Name="Option3_Tr" Type="nvarchar(max)" />
           <Property Name="Option4_Tr" Type="nvarchar(max)" />
+          <Property Name="option2" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DirectionQ2">
           <Key>
@@ -122,10 +123,11 @@
           <Key>
             <PropertyRef Name="GroupID" />
           </Key>
-          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GroupPass" Type="char" MaxLength="100" Nullable="false" />
           <Property Name="GSize" Type="int" Nullable="false" />
           <Property Name="GName" Type="varchar" MaxLength="100" />
+          <Property Name="Creator" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Sounds">
           <Key>
@@ -151,6 +153,7 @@
           <Property Name="quiz5" Type="bit" />
           <Property Name="quiz6" Type="bit" />
           <Property Name="GroupId" Type="int" />
+          <Property Name="isCreator" Type="bit" />
         </EntityType>
         <EntityType Name="VocabList">
           <Key>
@@ -366,8 +369,8 @@
           <EntitySet Name="VocabLists" EntityType="msdb5455Model.VocabList" />
           <EntitySet Name="DirectionQ3" EntityType="msdb5455Model.DirectionQ3" />
           <EntitySet Name="Sounds" EntityType="msdb5455Model.Sound" />
-          <EntitySet Name="Groups" EntityType="msdb5455Model.Group" />
           <EntitySet Name="Users" EntityType="msdb5455Model.User" />
+          <EntitySet Name="Groups" EntityType="msdb5455Model.Group" />
           <AssociationSet Name="FK_User_Groups" Association="msdb5455Model.FK_User_Groups">
             <End Role="Group" EntitySet="Groups" />
             <End Role="User" EntitySet="Users" />
@@ -380,7 +383,7 @@
           <Property Name="Qid" Type="Int32" Nullable="false" />
           <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="option2" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CorrectAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -389,6 +392,7 @@
           <Property Name="Option2_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Option3_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Option4_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notacol" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="DirectionQ2">
           <Key>
@@ -441,16 +445,6 @@
           <Property Name="Q_optionID" Type="Int32" />
           <Property Name="sound_reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Group">
-          <Key>
-            <PropertyRef Name="GroupID" />
-          </Key>
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="GroupPass" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
-          <Property Name="GSize" Type="Int32" Nullable="false" />
-          <Property Name="GName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Users" Relationship="msdb5455Model.FK_User_Groups" FromRole="Group" ToRole="User" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -466,7 +460,19 @@
           <Property Name="quiz5" Type="Boolean" />
           <Property Name="quiz6" Type="Boolean" />
           <Property Name="GroupId" Type="Int32" />
+          <Property Name="isCreator" Type="Boolean" />
           <NavigationProperty Name="Group" Relationship="msdb5455Model.FK_User_Groups" FromRole="User" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupPass" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="GSize" Type="Int32" Nullable="false" />
+          <Property Name="GName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Creator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="msdb5455Model.FK_User_Groups" FromRole="Group" ToRole="User" />
         </EntityType>
         <Association Name="FK_User_Groups">
           <End Type="msdb5455Model.Group" Role="Group" Multiplicity="0..1" />
@@ -554,6 +560,7 @@
           <EntitySetMapping Name="DirectionQs">
             <EntityTypeMapping TypeName="msdb5455Model.DirectionQ">
               <MappingFragment StoreEntitySet="DirectionQ">
+                <ScalarProperty Name="notacol" ColumnName="notacol" />
                 <ScalarProperty Name="Option4_Tr" ColumnName="Option4_Tr" />
                 <ScalarProperty Name="Option3_Tr" ColumnName="Option3_Tr" />
                 <ScalarProperty Name="Option2_Tr" ColumnName="Option2_Tr" />
@@ -624,19 +631,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Groups">
-            <EntityTypeMapping TypeName="msdb5455Model.Group">
-              <MappingFragment StoreEntitySet="Groups">
-                <ScalarProperty Name="GName" ColumnName="GName" />
-                <ScalarProperty Name="GSize" ColumnName="GSize" />
-                <ScalarProperty Name="GroupPass" ColumnName="GroupPass" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="msdb5455Model.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="isCreator" ColumnName="isCreator" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="quiz6" ColumnName="quiz6" />
                 <ScalarProperty Name="quiz5" ColumnName="quiz5" />
@@ -648,6 +646,17 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="msdb5455Model.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="GName" ColumnName="GName" />
+                <ScalarProperty Name="GSize" ColumnName="GSize" />
+                <ScalarProperty Name="GroupPass" ColumnName="GroupPass" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

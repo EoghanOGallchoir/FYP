@@ -25,6 +25,7 @@ namespace FYP.Models
         public Nullable<bool> quiz5 { get; set; }
         public Nullable<bool> quiz6 { get; set; }
         public Nullable<int> GroupId { get; set; }
+        public Nullable<bool> isCreator { get; set; }
     
         public virtual Group Group { get; set; }
     }

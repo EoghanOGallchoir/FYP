@@ -79,7 +79,7 @@ namespace FYP.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Group Home Page", "GroupHome", "Home");
             }
             catch
             {

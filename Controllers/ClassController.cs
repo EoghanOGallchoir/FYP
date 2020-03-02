@@ -48,7 +48,10 @@ namespace FYP.Controllers
         {
             string userName = User.Identity.GetUserName();
             //var result = db.Users.SingleOrDefault(s => s.UserName == userName);
-            
+            ViewBag.A = "A";
+            ViewBag.B = "B";
+            ViewBag.C = "C";
+            ViewBag.D = "D";
                 if (TempData["qID"] == null)
                 {
                     TempData["qID"] = 1;
@@ -80,29 +83,35 @@ namespace FYP.Controllers
         {
             
             Debug.WriteLine("After: " + q.CorrectAns);
-            string attemptedAns = "F";
-            if (q.option1 != null)
+            String attemptedAns = Request.Form["Model.Qid"];
+           // string attemptedAns = "F";
+            if (attemptedAns == "1")
             {
                 attemptedAns = "A";
             }
-            else if (q.option2 != null)
+            else if (attemptedAns == "2")
             {
                 attemptedAns = "B";
             }
-            else if (q.option3 != null)
+            else if (attemptedAns == "3")
             {
                 attemptedAns = "C";
             }
-            else if (q.option4 != null)
+            else if (attemptedAns == "4")
             {
                 attemptedAns = "D";
             }
-           
-            if (attemptedAns.Equals(q.CorrectAns))
+
+            
+            Debug.WriteLine("atAns:" + attemptedAns);
+            
+            
+
+            if (attemptedAns.Equals(q.CorrectAns.ToString()))
             {
                 
                 TempData["Score"] = Convert.ToInt32(TempData["Score"]) + 1;
-                Debug.WriteLine("Entered " + TempData["Score"]);
+                Debug.WriteLine("Score: " + TempData["Score"]);
             }
         
             if (q.CorrectAns == null)
@@ -140,7 +149,7 @@ namespace FYP.Controllers
                                 Debug.WriteLine("true? "+result);
                                 if (result.quiz1 != true)
                                 {
-                                    result.ProgressXP = result.ProgressXP + 10;
+                                    result.ProgressXP = result.ProgressXP + 15;
                                     Debug.WriteLine("progress incremented:" + result.ProgressXP);
                                     result.quiz1 = true;
                                     db.SaveChanges();
@@ -328,7 +337,7 @@ namespace FYP.Controllers
                             {
                                 if (result.quiz2 != true)
                                 {
-                                    result.ProgressXP = result.ProgressXP + 10;
+                                    result.ProgressXP = result.ProgressXP + 20;
                                     result.quiz2 = true;
                                     db.SaveChanges();
                                    // RedirectToAction("DirectionStart");
@@ -410,8 +419,8 @@ namespace FYP.Controllers
         {
 
             Debug.WriteLine("After: " +q.CorrectAns);
-            string attemptedAns = null;
-          
+            String attemptedAns = Request.Form["Model.Qid"];
+
             if (q.option1 != null)
             {
                 attemptedAns = "A";
@@ -475,7 +484,7 @@ namespace FYP.Controllers
                                 Debug.WriteLine("true? " + result);
                                 if (result.quiz3 != true)
                                 {
-                                    result.ProgressXP = result.ProgressXP + 10;
+                                    result.ProgressXP = result.ProgressXP + 15;
                                     Debug.WriteLine("progress incremented:" + result.ProgressXP);
                                     result.quiz3 = true;
                                     db.SaveChanges();
