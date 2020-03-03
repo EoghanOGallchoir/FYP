@@ -36,6 +36,12 @@ namespace WebApplication3.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
 
+            var user = User.Identity.Name;
+            var g = db.Users.Where(x => x.UserName == user).Select(x => x.GroupId).FirstOrDefault();
+          //  var gName = db.Groups.Where(x => x.GroupID == g).Select(x => x.GName).FirstOrDefault();
+
+            ViewBag.GiD = g;
+
             if (searchString != null)
             {
                 page = 1;
@@ -82,11 +88,13 @@ namespace WebApplication3.Controllers
 
         public ActionResult MyGroup(string id)
         {
-                      
+
+            var user = User.Identity.Name;
             var q = db.Users.Where(x => x.UserName == id).Select(x => x.GroupId);
+            var g = db.Users.Where(x => x.UserName == user).Select(x => x.GroupId).FirstOrDefault();
+            var gName = db.Groups.Where(x => x.GroupID == g).Select(x => x.GName).FirstOrDefault();
 
-         
-
+            ViewBag.GName = gName;
             Debug.WriteLine("someting: "+q);
 
             return View(db.Users.Where(x => x.GroupId == q.FirstOrDefault()));
@@ -118,6 +126,7 @@ namespace WebApplication3.Controllers
                     string userId = User.Identity.GetUserName();
                     Debug.WriteLine("user: " + userId);
                     var result = db.Users.SingleOrDefault(s => s.UserName == userId);
+                    var r2 = db.Groups.SingleOrDefault(r => r.GroupID == id);
                     if (result.GroupId == id)
                     {
                         RedirectToAction("GroupHome", "Home");
@@ -126,6 +135,7 @@ namespace WebApplication3.Controllers
                     {
                         Debug.WriteLine("result.Gid: " + result.GroupId);
                         result.GroupId = id;
+                        r2.GSize = r2.GSize + 1;
                         Debug.WriteLine("model.gid: " + result.GroupId);
                         db.SaveChanges();
                         return RedirectToAction("Index", "Home");
@@ -171,6 +181,10 @@ namespace WebApplication3.Controllers
                     var result = db.Users.SingleOrDefault(s => s.UserName == userId);
                     Debug.WriteLine("result.Gid: " + result.GroupId);
                     result.GroupId = null;
+                    if (result.isCreator == true)
+                    {
+                        result.isCreator = false;
+                    }
                     Debug.WriteLine("model.gid: " + result.GroupId);
                     db.SaveChanges();
                     return RedirectToAction("GroupHome", "Home");

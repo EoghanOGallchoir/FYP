@@ -11,25 +11,28 @@ namespace FYP.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Group
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Message
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Group()
+        public Message()
         {
-            this.Users = new HashSet<User>();
-            this.Messages = new HashSet<Message>();
+            this.Replies = new HashSet<Reply>();
         }
     
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Subject { get; set; }
+        [Required]
+        public string Message1 { get; set; }
+        public string FromUser { get; set; }
+        public System.DateTime DatePosted { get; set; }
         public int GroupID { get; set; }
-        public string GroupPass { get; set; }
-        public int GSize { get; set; }
-        public string GName { get; set; }
-        public string Creator { get; set; }
     
+        public virtual Group Group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

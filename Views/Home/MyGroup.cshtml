@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Grúpa @User.Identity.Name</h2>
+<h2>Grúpa @ViewBag.GName</h2>
+
 @foreach (var item in Model)
 {
     if (item.UserName == User.Identity.GetUserName())
     {
+        <p>@Html.ActionLink("Group Discussion", "Home", "Messages")</p>
         if (item.GroupId == null)
         {
             <p>Not part of a Group! Create one @Html.ActionLink("here", "Create", "Groups")</p>
@@ -76,11 +78,8 @@
 
 @foreach (var item2 in Model)
 {
-    if (item2.UserName == User.Identity.GetUserName())
-    {
-        @Html.ActionLink("Leave Group", "Leave", new { id = item2.GroupId })
-    }
-    <br />
+
+
     <br />
     if (item2.isCreator == true)
     {
@@ -88,5 +87,10 @@
             @Html.ActionLink("Edit", "Edit", "Groups", new { id = item2.GroupId }, null) |
             @Html.ActionLink("Delete", "Delete", "Groups", new { id = item2.GroupId }, null)
         </td>
+    }
+    <br />
+    if (item2.UserName == User.Identity.GetUserName())
+    {
+        @Html.ActionLink("Leave Group", "Leave", new { id = item2.GroupId })
     }
 }

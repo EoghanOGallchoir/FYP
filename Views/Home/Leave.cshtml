@@ -27,9 +27,10 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Leave" class="btn btn-default" /> |
+            <input type="submit" value="Leave" class="btn btn-default" /> 
 
         </div>
     }
+    <br />
     @Html.ActionLink("Back to Group Home", "MyGroup", new { id = User.Identity.Name})
 </div>

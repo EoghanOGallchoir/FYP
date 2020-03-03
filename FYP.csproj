@@ -201,25 +201,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
-    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>Groups.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>Groups.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>Groups.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>Groups.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DirectionQ.cs">
       <DependentUpon>Groups.tt</DependentUpon>
@@ -251,6 +236,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Message.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MessageReplyViewModel.cs" />
+    <Compile Include="Models\Reply.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Sound.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
@@ -261,7 +253,6 @@
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="signalr\hubs\ChatHub.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Views\GroupsController.cs" />
     <Compile Include="Views\SoundsController.cs" />
@@ -367,8 +358,6 @@
     <Content Include="Views\Home\Learn.cshtml" />
     <Content Include="Views\Home\Vocab.cshtml" />
     <Content Include="Views\Class\DirectionStart.cshtml" />
-    <Content Include="Views\Group\Groups.cshtml" />
-    <Content Include="Views\Group\GroupList.cshtml" />
     <Content Include="Views\Class\DirectionsP1.cshtml" />
     <Content Include="Views\Class\DirectionsP2.cshtml" />
     <Content Include="Views\Home\TestView.cshtml" />
@@ -398,7 +387,9 @@
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Home\Join.cshtml" />
     <Content Include="Views\Home\Leave.cshtml" />
-    <Content Include="Views\Home\GroupChat.cshtml" />
+    <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\Home.cshtml" />
+    <Content Include="Views\Messages\DeleteMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

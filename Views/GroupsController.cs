@@ -57,17 +57,24 @@ namespace FYP.Views
                 {
                     bool isValid = context.Users.Any(x => x.UserName == userId);
                     var result = db.Users.SingleOrDefault(s => s.UserName == userId);
+                    
                     Debug.WriteLine("check:" + isValid);
-                    if (isValid == true)
+                    if (result.isCreator == null || result.isCreator == false)
                     {
-                        Debug.WriteLine("result: "+ result.GroupId + "group: " + group.GroupID);
-                        result.GroupId = group.GroupID;
-                        group.Creator = result.UserName;
-                        result.isCreator = true;
-                        db.Groups.Add(group);
-                        db.SaveChanges();
-                        return RedirectToAction("GroupHome", "Home");
+                        if (isValid == true)
+                        {
+                            Debug.WriteLine("result: " + result.GroupId + "group: " + group.GroupID);
+                            result.GroupId = group.GroupID;
+                            group.Creator = result.UserName;
+                            group.GSize = group.GSize + 1;
+                            result.isCreator = true;
+                            db.Groups.Add(group);
+                            db.SaveChanges();
+                            return RedirectToAction("GroupHome", "Home");
+                        }
                     }
+                    ModelState.AddModelError("", "Cannot create a new group, still a group admin!");
+                    return View();
                 }
             }
 
@@ -96,11 +103,12 @@ namespace FYP.Views
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GroupID,GroupPass,GSize,GName")] Group group)
         {
+            var user = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 db.Entry(group).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyGroup", "Home", new { id = user});
             }
             return View(group);
         }

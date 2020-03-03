@@ -49,10 +49,18 @@
                 @Html.DisplayFor(modelItem => item.GroupID)
             </td>
             
+            @if (item.GroupID != ViewBag.GiD)
+            {
             <td>
                 @Html.ActionLink("Join", "Join", new { id = item.GroupID })
             </td>
-            
+            }
+            else
+            {
+                <td>
+
+                </td>
+            }
         </tr>
     }
 
