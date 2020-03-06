@@ -1,0 +1,237 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<FYP.Models.User>
+@{
+    ViewBag.Title = "Start learning directions!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@if (User.Identity.IsAuthenticated == true)
+{
+
+    foreach (var item in Model)
+    {
+        if (User.Identity.GetUserName() == item.UserName)
+        {
+
+            if (item.quiz4 == true && item.quiz5 == true && item.quiz6 == true)
+            {
+                <h2>Foghlaim faoi spoirt!  <img src="~/Images/sport.png" style="height:40px;width:80px" /></h2>
+            }
+            else if (item.quiz4 == true && item.quiz5 == true)
+            {
+                <h2>Foghlaim faoi spoirt!  <img src="~/Images/sport.png" style="height:40px;width:80px" /></h2>
+            }
+            else
+            {
+                <h2>Start learning about sport!  <img src="~/Images/sport.png" style="height:40px;width:80px" /></h2>
+            }
+        }
+    }
+}
+
+
+
+<style>
+    .column {
+        float: left;
+        width: auto;
+        padding: 5px;
+    }
+
+    .column-tic {
+        float: left;
+        width: auto;
+        padding: 10px;
+    }
+
+    .column-tic2 {
+        float: left;
+        width: auto;
+        padding: -5px;
+    }
+
+    .twitter-line {
+        width: 450px;
+        position: relative;
+        right: -30%;
+    }
+</style>
+
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    foreach (var item in Model)
+    {
+        if (User.Identity.GetUserName() == item.UserName)
+        {
+
+            if (item.quiz4 == true && item.quiz5 == true && item.quiz6 == true)
+            {
+                <h5>Forbairt Ranga:</h5>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                         aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        100%
+                    </div>
+                </div>
+            }
+            else if (item.quiz4 == true && item.quiz5 == true)
+            {
+                <h5>Forbairt Ranga:</h5>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                         aria-valuemin="0" aria-valuemax="100" style="width:66%">
+                        66%
+                    </div>
+                </div>
+            }
+            else if (item.quiz6 == true)
+            {
+                <h5>Class Progress:</h5>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                         aria-valuemin="0" aria-valuemax="100" style="width:33%">
+                        33%
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h5>Class Progress:</h5>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                         aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        No Progress Yet!
+                    </div>
+                </div>
+            }
+        }
+    }
+}
+<body>
+
+
+    @foreach (var item in Model)
+    {
+        if (User.Identity.GetUserName() == item.UserName)
+        {
+            if (item.quiz4 == true && item.quiz5 == true && item.quiz6 == true)
+            {
+                <div class="row">
+                    <div class="column">
+                        <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP1">
+                            Na Bun Tearmaí
+                        </a>
+                    </div>
+                    <div class="column-tic">
+                        <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="column">
+                        <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP2">
+                            Abairt a chur i dtoll a chéile
+                        </a>
+                    </div>
+                    <div class="column-tic">
+                        <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="column">
+                        <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP3">
+                            Foclóir a leathnu
+                        </a>
+                    </div>
+                    <div class="column-tic">
+                        <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
+                    </div>
+                </div>
+            }
+            else if (item.quiz4 == true && item.quiz5 == true)
+            {
+                <div class="row">
+                    <div class="column">
+                        <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP1">
+                            Na Bun Tearmaí
+                        </a>
+                    </div>
+                    <div class="column-tic">
+                        <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="column">
+                        <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP2">
+                            Abairt a chur i dtoll a chéile
+                        </a>
+                    </div>
+                    <br />
+                    <div class="column-tic2">
+                        <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <a role="button" class="btn btn-primary btn-lg" href="~/Class/SportP3">
+                        Expanding Vocab
+                    </a>
+                </div>
+            }
+            else if (item.quiz4 == true)
+            {
+                <div class="row">
+                    <div class="column">
+                        <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP1">
+                            Na Bun Tearmaí
+                        </a>
+                    </div>
+                    <div class="column-tic">
+                        <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <a role="button" class="btn btn-primary btn-lg" href="~/Class/SportP2">
+                        Constructing Sentences
+                    </a>
+                </div>
+                <br />
+                <div class="row">
+                    <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP3">
+                        Expanding Vocab
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <a role="button" class="btn btn-primary btn-lg" href="~/Class/SportP1">
+                        The Basics
+                    </a>
+                </div>
+                <br />
+                <div class="row">
+                    <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP2">
+                        Constructing Sentences
+                    </a>
+                </div>
+                <br />
+                <div class="row">
+                    <a role="button" class="btn btn-primary btn-lg disabled" href="~/Class/SportP3">
+                        Expanding Vocab
+                    </a>
+                </div>
+
+            }
+        }
+    }
+
+
+</body>

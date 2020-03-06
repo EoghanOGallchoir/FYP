@@ -2,10 +2,8 @@
 <Schema Namespace="msdb5455Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="msdb5455Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="DirectionQs" EntityType="msdb5455Model.DirectionQ" />
-    <EntitySet Name="DirectionQ2" EntityType="msdb5455Model.DirectionQ2" />
     <EntitySet Name="VocabLists" EntityType="msdb5455Model.VocabList" />
     <EntitySet Name="DirectionQ3" EntityType="msdb5455Model.DirectionQ3" />
-    <EntitySet Name="Sounds" EntityType="msdb5455Model.Sound" />
     <EntitySet Name="Users" EntityType="msdb5455Model.User" />
     <EntitySet Name="Groups" EntityType="msdb5455Model.Group" />
     <AssociationSet Name="FK_User_Groups" Association="msdb5455Model.FK_User_Groups">
@@ -22,6 +20,10 @@
       <End Role="Message" EntitySet="Messages" />
       <End Role="Reply" EntitySet="Replies" />
     </AssociationSet>
+    <EntitySet Name="SportQs" EntityType="msdb5455Model.SportQ" />
+    <EntitySet Name="DirectionQ2" EntityType="msdb5455Model.DirectionQ2" />
+    <EntitySet Name="SportQ2" EntityType="msdb5455Model.SportQ2" />
+    <EntitySet Name="SportQ3" EntityType="msdb5455Model.SportQ3" />
   </EntityContainer>
   <EntityType Name="DirectionQ">
     <Key>
@@ -41,30 +43,15 @@
     <Property Name="Option4_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="notacol" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
-  <EntityType Name="DirectionQ2">
-    <Key>
-      <PropertyRef Name="Qid" />
-    </Key>
-    <Property Name="Qid" Type="Int32" Nullable="false" />
-    <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ans1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ans2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ans3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ans4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Question_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Option1_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Option2_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Option3_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Option4_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="VocabList">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="quizID" Type="Int32" />
-    <Property Name="Irish" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="English" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Irish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Irish_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DirectionQ3">
     <Key>
@@ -72,25 +59,16 @@
     </Key>
     <Property Name="Qid" Type="Int32" Nullable="false" />
     <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="option1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="option2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="option3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="option4" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CorrectAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Question_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Option1_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Option2_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Option3_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Option4_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Sound">
-    <Key>
-      <PropertyRef Name="soundID" />
-    </Key>
-    <Property Name="soundID" Type="Int32" Nullable="false" />
-    <Property Name="quizID" Type="Int32" />
-    <Property Name="Q_optionID" Type="Int32" />
-    <Property Name="sound_reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -182,4 +160,60 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="SportQ">
+    <Key>
+      <PropertyRef Name="Qid" />
+    </Key>
+    <Property Name="Qid" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="correctAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Question_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option1_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option2_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option3_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option4_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DirectionQ2">
+    <Key>
+      <PropertyRef Name="Qid" />
+    </Key>
+    <Property Name="Qid" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ans1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="keyword1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="keyword2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Question_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SportQ2">
+    <Key>
+      <PropertyRef Name="Qid" />
+    </Key>
+    <Property Name="Qid" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ans1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="keyword1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="keyword2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Question_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SportQ3">
+    <Key>
+      <PropertyRef Name="Qid" />
+    </Key>
+    <Property Name="Qid" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="correctAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Question_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option1_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option2_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option3_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="option4_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

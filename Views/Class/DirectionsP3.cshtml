@@ -39,6 +39,8 @@ else
         {
 
             <h1>
+
+                <br />
                 @Html.DisplayFor(x => x.Question) <audio id="Q">
                     <source src="~/Sounds/@Model.Question_Tr" type="audio/ogg" />
                 </audio>
@@ -75,20 +77,20 @@ else
             }
             else
             {
-        <h3> @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1</h3>
+                <h3> @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1</h3>
             }
         </div>
         <div class="row">
             @if (Model.Option2_Tr != null)
             {
-            <h3>
-                @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2<audio id="2">
-                    <source src="~/Sounds/@Model.Option2_Tr" type="audio/ogg" />
-                </audio>
-                <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
-                    <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
-                </a>
-            </h3>
+                <h3>
+                    @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2<audio id="2">
+                        <source src="~/Sounds/@Model.Option2_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
             }
             else
             {
@@ -173,10 +175,10 @@ else
             </div>
         </div>
     }
-    
-    @Html.HiddenFor(x => x.CorrectAns)
 
 
+
+    @Html.HiddenFor(x => x.Qid)
 
 </div>
 

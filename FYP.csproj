@@ -70,6 +70,12 @@
       <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MMLib.Core, Version=1.0.5305.36249, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MMLib.Extensions.1.0.10.13\lib\MMLib.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MMLib.Extensions, Version=1.0.2.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MMLib.Extensions.1.0.10.13\lib\MMLib.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -243,7 +249,13 @@
     <Compile Include="Models\Reply.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sound.cs">
+    <Compile Include="Models\SportQ.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SportQ2.cs">
+      <DependentUpon>Groups.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SportQ3.cs">
       <DependentUpon>Groups.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -254,8 +266,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Views\GroupsController.cs" />
-    <Compile Include="Views\SoundsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Views\UsersController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -269,14 +280,19 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\bar.png" />
+    <Content Include="Images\boots.png" />
     <Content Include="Images\church.png" />
     <Content Include="Images\Directions.png" />
     <Content Include="Images\fish.png" />
+    <Content Include="Images\foul.png" />
+    <Content Include="Images\Goalie.png" />
     <Content Include="Images\icons8-sound-50.png" />
     <Content Include="Images\incorrect.png" />
     <Content Include="Images\nature.png" />
     <Content Include="Images\search.png" />
+    <Content Include="Images\shirt.png" />
     <Content Include="Images\sound.png" />
+    <Content Include="Images\sport.png" />
     <Content Include="Images\tick.jpg" />
     <Content Include="Models\Groups.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -318,27 +334,47 @@
     <Content Include="Sounds\an-bothar.wav" />
     <Content Include="Sounds\an-ospideal.wav" />
     <Content Include="Sounds\an-tra.wav" />
+    <Content Include="Sounds\bhain-cnae.wav" />
+    <Content Include="Sounds\bhain-dnag.wav" />
     <Content Include="Sounds\bialann-mara.wav" />
+    <Content Include="Sounds\broga-peile.wav" />
     <Content Include="Sounds\bunscoil.wav" />
+    <Content Include="Sounds\carta-bui.wav" />
     <Content Include="Sounds\cas-chle.wav" />
     <Content Include="Sounds\cas-dheis.wav" />
     <Content Include="Sounds\cen-ait-ostan.wav" />
     <Content Include="Sounds\cen-ait.wav" />
     <Content Include="Sounds\cen-fath.wav" />
+    <Content Include="Sounds\chaill-dnag.wav" />
+    <Content Include="Sounds\chaill-liathroid.wav" />
     <Content Include="Sounds\chle-direach.wav" />
     <Content Include="Sounds\chul.wav" />
+    <Content Include="Sounds\cicp-dnag.wav" />
+    <Content Include="Sounds\cispheile.wav" />
     <Content Include="Sounds\coinnigh-direach.wav" />
+    <Content Include="Sounds\cul-baire.wav" />
     <Content Include="Sounds\de-ata-ann.wav" />
     <Content Include="Sounds\direach-fhairraige.wav" />
     <Content Include="Sounds\eaglaise.wav" />
     <Content Include="Sounds\fire_bow_sound-mike-koenig.wav" />
+    <Content Include="Sounds\geansai-peile.wav" />
+    <Content Include="Sounds\greamu-fealltach.wav" />
+    <Content Include="Sounds\imreoir-obair.wav" />
+    <Content Include="Sounds\imreoir.wav" />
+    <Content Include="Sounds\leathchulai-pointe.wav" />
+    <Content Include="Sounds\liathroid.wav" />
     <Content Include="Sounds\pairc-peile.wav" />
     <Content Include="Sounds\pairc.wav" />
+    <Content Include="Sounds\pointe.wav" />
+    <Content Include="Sounds\posta.wav" />
     <Content Include="Sounds\priomhbhothar.wav" />
     <Content Include="Sounds\siopa.wav" />
     <Content Include="Sounds\siuloid-dulra.wav" />
+    <Content Include="Sounds\sliotar.wav" />
+    <Content Include="Sounds\stocai.wav" />
     <Content Include="Sounds\teach-tabhairne.wav" />
     <Content Include="Sounds\Tiomaint.wav" />
+    <Content Include="Sounds\tosai.wav" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -377,19 +413,26 @@
     <Content Include="Views\Sounds\Details.cshtml" />
     <Content Include="Views\Sounds\Edit.cshtml" />
     <Content Include="Views\Sounds\Index.cshtml" />
-    <Content Include="Views\Home\GroupHome.cshtml" />
+    <Content Include="Views\Groups\GroupHome.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
-    <Content Include="Views\Home\MyGroup.cshtml" />
+    <Content Include="Views\Groups\MyGroup.cshtml" />
     <Content Include="Views\Groups\Create.cshtml" />
     <Content Include="Views\Groups\Delete.cshtml" />
     <Content Include="Views\Groups\Details.cshtml" />
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
-    <Content Include="Views\Home\Join.cshtml" />
-    <Content Include="Views\Home\Leave.cshtml" />
+    <Content Include="Views\Groups\Join.cshtml" />
+    <Content Include="Views\Groups\Leave.cshtml" />
     <Content Include="Views\Messages\Create.cshtml" />
     <Content Include="Views\Messages\Home.cshtml" />
     <Content Include="Views\Messages\DeleteMessage.cshtml" />
+    <Content Include="Views\Class\SportP1.cshtml" />
+    <Content Include="Views\Class\SportStart.cshtml" />
+    <Content Include="Views\Class\ResultsS1.cshtml" />
+    <Content Include="Views\Class\SportP2.cshtml" />
+    <Content Include="Views\Class\ResultsS2.cshtml" />
+    <Content Include="Views\Class\SportP3.cshtml" />
+    <Content Include="Views\Class\ResultsS3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

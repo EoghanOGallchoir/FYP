@@ -67,11 +67,11 @@
                                                 </td>
 
                                                 <td>
-                                                    @Html.ActionLink("View Message/Reply", "Home", new { Id = m.Id })
+                                                    @Html.ActionLink("View Message/Reply", "Home", new { Id = m.Id, page = ViewBag.PageNumber })
                                                 </td>
 
                                                 <td>
-                                                    @Html.ActionLink("Collapse Details", "Home", new { Id = "" })
+                                                    @Html.ActionLink("Collapse Details", "Home", new { Id = "", page = ViewBag.PageNumber })
                                                 </td>
                                               
                                                 <td><input type="hidden" id="messageId" name="messageId" value="@m.Id"></td>
@@ -79,7 +79,7 @@
 
                                                 }
                                             </table>
-                                            Page @ViewBag.PageNumber of @ViewBag.TotalPages   @Html.PagedListPager((IPagedList)ViewBag.MessagesInOnePage, page => Url.Action("Index", new { page }))
+                                            Page @ViewBag.PageNumber of @ViewBag.TotalPages   @Html.PagedListPager((IPagedList)ViewBag.MessagesInOnePage, page => Url.Action("Home", new { page }))
                                             <!-- category table end-->
 
                                         </div>

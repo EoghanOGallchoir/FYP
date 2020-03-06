@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ResultsS2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Results of Sport Sentence building</h2>
+
+<body>
+
+   
+
+        @if (Convert.ToInt32(TempData["Score5"]) == 4)
+        {
+            <h1>Fuair tú @TempData["Score5"] as 4.</h1>
+            <br />
+            <h1>Your Progress will be saved.</h1>
+
+        }
+        else
+        {
+            <div>
+                <h1>You scored @TempData["Score5"]/4. You will need 4/4 to progress on from this class.</h1>
+            </div>
+        }
+
+   
+    <div>
+        <a role="button" class="btn btn-primary btn-lg" href="~/Class/SportStart">
+            Return to Sport Home
+        </a>
+    </div>
+
+</body>
+

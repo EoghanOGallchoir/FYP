@@ -18,5 +18,6 @@ namespace FYP.Models
         public Nullable<int> quizID { get; set; }
         public string Irish { get; set; }
         public string English { get; set; }
+        public string Irish_Tr { get; set; }
     }
 }

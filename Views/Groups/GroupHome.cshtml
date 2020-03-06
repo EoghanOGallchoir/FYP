@@ -1,0 +1,84 @@
+﻿@model PagedList.IPagedList<FYP.Models.Group>
+@using Microsoft.AspNet.Identity
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Group Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Group Home Page</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Groups")
+</p>
+
+<p>
+    @Html.ActionLink("My Group", "MyGroup", new { id = User.Identity.GetUserName() })
+</p>
+
+@using (Html.BeginForm("GroupHome", "Groups", FormMethod.Get))
+{
+    <p align="right">
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Group Name
+        </th>
+        <th>
+            @Html.ActionLink("Group ID", "GroupHome", new { sortOrder = ViewBag.IdSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.GroupID == (int)item.GroupID)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupID)
+            </td>
+            
+            @if (item.GroupID != ViewBag.GiD)
+            {
+            <td>
+                @Html.ActionLink("Join", "Join", new { id = item.GroupID })
+            </td>
+            }
+            else
+            {
+                <td>
+
+                </td>
+            }
+        </tr>
+        }
+        else
+        {
+            <p>No Groups Found!</p>
+        }
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GroupHome",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+

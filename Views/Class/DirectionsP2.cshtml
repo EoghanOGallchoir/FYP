@@ -1,6 +1,6 @@
 ﻿@model FYP.Models.DirectionQ2
 @{
-    ViewBag.Title = "DirectionsP1";
+    ViewBag.Title = "DirectionsP2";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -46,6 +46,8 @@ else
                 {
 
                     <h1>
+
+                        <br />
                         @Html.DisplayFor(x => x.Question) <audio id="Q">
                             <source src="~/Sounds/@Model.Question_Tr" type="audio/ogg" />
                         </audio>
@@ -71,13 +73,6 @@ else
                     <input type="submit" value="submit" class="btn btn-success" />
                 </div>
 
-                <div class="row">
-                    @Html.HiddenFor(x => x.ans1)
-                    @Html.HiddenFor(x => x.ans2)
-                    @Html.HiddenFor(x => x.ans3)
-                    @Html.HiddenFor(x => x.ans4)
-                </div>
-
                 @if (Model.Qid == 5)
                 {
 
@@ -101,5 +96,6 @@ else
 
 
         </div>
+        @Html.HiddenFor(x => x.Qid)
     }
 </body>

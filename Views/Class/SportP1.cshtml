@@ -1,0 +1,189 @@
+﻿@model FYP.Models.SportQ
+
+@{
+    ViewBag.Title = "Sport Part 1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Qid == 4)
+{
+    <h2>Treoracha - Na bun tearmaí</h2>
+}
+else if (Model.Qid == 3)
+{
+    <h2>Treoracha - The Basics</h2>
+}
+else
+{
+    <h2>Directions - The Basics</h2>
+}
+
+<style>
+    .column {
+        float: left;
+        flex-basis: 10%;
+        flex-direction: column;
+        display: flex;
+        flex: 0.15;
+    }
+
+    .column-sound {
+        float: left;
+        flex-basis: 10%;
+        flex-direction: column;
+        display: flex;
+        flex: 0.12;
+        padding-top: 20px;
+    }
+
+    .column-sound-2 {
+        float: left;
+        flex-basis: 10%;
+        flex-direction: column;
+        display: flex;
+        flex: auto;
+        padding-top: 20px;
+    }
+
+    .column-sound-3 {
+        float: left;
+        flex-basis: 10%;
+        flex-direction: column;
+        display: flex;
+        flex: none;
+        padding-top: 20px;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<div style="float: left; display: inline;">@Html.ActionLink("Back", "SportStart", "Class")</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="container" style="margin:0 auto">
+
+        @if (Model.Question_Tr != null)
+        {
+
+            <h1>
+
+                <br />
+                @Html.DisplayFor(x => x.Question) <audio id="Q">
+                    <source src="~/Sounds/@Model.Question_Tr" type="audio/ogg" />
+                </audio>
+                <a onclick="document.getElementById('Q').play();" onmouseover="" style="cursor: pointer;">
+                    <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                </a>
+            </h1>
+
+        }
+        else
+        {
+            <div class="row">
+                <h1> @Html.DisplayFor(x => x.Question) </h1>
+            </div>
+
+        }
+
+
+        <div class="row">
+            @if (Model.option1_Tr != null)
+            {
+
+                <h3>
+                    @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1<audio id="1">
+                        <source src="~/Sounds/@Model.option1_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('1').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
+
+
+
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1</h3>
+            }
+        </div>
+        <div class="row">
+            @if (Model.option2_Tr != null)
+            {
+                <h3>
+                    @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2<audio id="2">
+                        <source src="~/Sounds/@Model.option2_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2</h3>
+            }
+        </div>
+
+        <div class="row">
+            @if (Model.option3_Tr != null)
+            {
+
+                <h3>
+                    @Html.RadioButtonFor(x => x.option3, Model.option3, new { @Name = "Model.Qid" }) @Model.option3 <audio id="3">
+                        <source src="~/Sounds/@Model.option3_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('3').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option3, Model.option3, new { @Name = "Model.Qid" }) @Model.option3</h3>
+            }
+        </div>
+
+        <div class="row">
+            @if (Model.option4_Tr != null)
+            {
+
+                <h3>
+                    @Html.RadioButtonFor(x => x.option4, Model.option4, new { @Name = "Model.Qid" }) @Model.option4 <audio id="4">
+                        <source src="~/Sounds/@Model.option4_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('4').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                </h3>
+            }
+            else
+            {
+                <h3> @Html.RadioButtonFor(x => x.option4, Model.option4, new { @Name = "Model.Qid" }) @Model.option4</h3>
+            }
+        </div>
+
+
+
+        <div class="row">
+            <input type="submit" value="submit" class="btn btn-success" required />
+        </div>
+
+    </div>
+
+    @Html.HiddenFor(x => x.Qid)
+</div>
+}

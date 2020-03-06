@@ -11,8 +11,7 @@ namespace FYP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Message
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +20,8 @@ namespace FYP.Models
             this.Replies = new HashSet<Reply>();
         }
     
-        [Key]
         public int Id { get; set; }
-        [Required]
         public string Subject { get; set; }
-        [Required]
         public string Message1 { get; set; }
         public string FromUser { get; set; }
         public System.DateTime DatePosted { get; set; }

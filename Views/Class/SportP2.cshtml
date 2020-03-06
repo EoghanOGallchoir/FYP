@@ -1,0 +1,89 @@
+﻿@model FYP.Models.SportQ2
+@{
+    ViewBag.Title = "SportP2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Qid == 4)
+{
+    <h2>Sport - Abairt a chur i dtoll a chéile</h2>
+}
+else if (Model.Qid == 3)
+{
+    <h2>Sport - Sentence Construction</h2>
+}
+else
+{
+    <h2>Sport - Sentence Construction</h2>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<style>
+    .pic {
+        width: 450px;
+        position: relative;
+        right: -60%;
+    }
+
+    .pad {
+        padding: 10px;
+        padding-left: -120px;
+    }
+</style>
+<body>
+    <div style="float: left; display: inline;">@Html.ActionLink("Back", "SportStart", "Class")</div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="container" style="margin: 0 auto">
+
+        @if (Model.Question_Tr != null)
+        {
+
+            <h1>
+
+                <br />
+                @Html.DisplayFor(x => x.Question) <audio id="Q">
+                    <source src="~/Sounds/@Model.Question_Tr" type="audio/ogg" />
+                </audio>
+                <a onclick="document.getElementById('Q').play();" onmouseover="" style="cursor: pointer;">
+                    <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                </a>
+            </h1>
+
+        }
+        else
+        {
+            <div class="row">
+                <h1> @Html.DisplayFor(x => x.Question) </h1>
+            </div>
+
+        }
+        <div class="row" style="width:500px">
+
+            <input type="text" class="form-control" name="attemptedAns" required />
+        </div>
+
+        <div class="row pad" style="width:200px">
+            <input type="submit" value="submit" class="btn btn-success" />
+        </div>
+
+        <div class="row">
+
+
+        </div>
+
+
+
+
+    </div>
+
+    @Html.HiddenFor(x => x.Qid)
+</div>
+    }
+</body>

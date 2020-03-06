@@ -31,6 +31,8 @@ namespace FYP.Controllers
             vm.Messages = db.Messages.Where(x => x.GroupID == g).OrderBy(x => x.DatePosted).ToPagedList(pageNumber, pageSize);
             ViewBag.MessagesInOnePage = vm.Messages;
             ViewBag.PageNumber = pageNumber;
+            TempData["CurrPage"] = pageNumber;
+            TempData.Keep();
 
             if (Id != null)
             {
@@ -72,16 +74,18 @@ namespace FYP.Controllers
            
             if (vm.Reply.ReplyMessage != null)
             {
-                Reply _reply = new Reply();
-                _reply.ReplyDate = DateTime.Now;
-                _reply.MessageId = messageId;
-                _reply.ReplyFromUser = username;
-                _reply.ReplyMessage = vm.Reply.ReplyMessage;
-                db.Replies.Add(_reply);
+                Reply reply = new Reply();
+                reply.ReplyDate = DateTime.Now;
+                reply.MessageId = messageId;
+                reply.ReplyFromUser = username;
+                reply.ReplyMessage = vm.Reply.ReplyMessage;
+                db.Replies.Add(reply);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Home", "Messages", new { Id = messageId });
+            int pageNum = Convert.ToInt32(TempData["CurrPage"]);
+
+            return RedirectToAction("Home", "Messages", new { Id = messageId, page = pageNum });
 
         }
 
@@ -149,17 +153,17 @@ namespace FYP.Controllers
             Debug.WriteLine("db group: "+ g);
             // var q = db.Users.Where(x => x.UserName == username).Select(x => x.GroupId);
             //var x = db.Users.Where(x => x.GroupId == q.FirstOrDefault());
-            Message messagetoPost = new Message();
+            Message message = new Message();
             if (vm.Message.Subject != string.Empty && vm.Message.Message1 != string.Empty)
             {
-                messagetoPost.DatePosted = DateTime.Now;
-                messagetoPost.Subject = vm.Message.Subject;
-                messagetoPost.Message1 = vm.Message.Message1;
-                messagetoPost.FromUser = username;
-                messagetoPost.GroupID = (int)g;
-                db.Messages.Add(messagetoPost);
+                message.DatePosted = DateTime.Now;
+                message.Subject = vm.Message.Subject;
+                message.Message1 = vm.Message.Message1;
+                message.FromUser = username;
+                message.GroupID = (int)g;
+                db.Messages.Add(message);
                 db.SaveChanges();
-                msgid = messagetoPost.Id;
+                msgid = message.Id;
             }
 
             return RedirectToAction("Home", "Messages", new { Id = msgid });

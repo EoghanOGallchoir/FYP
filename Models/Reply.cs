@@ -11,15 +11,12 @@ namespace FYP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Reply
     {
-        [Key]
         public int Id { get; set; }
         public Nullable<int> MessageId { get; set; }
         public string ReplyFromUser { get; set; }
-        [Required]
         public string ReplyMessage { get; set; }
         public System.DateTime ReplyDate { get; set; }
     

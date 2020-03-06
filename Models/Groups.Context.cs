@@ -26,13 +26,15 @@ namespace FYP.Models
         }
     
         public virtual DbSet<DirectionQ> DirectionQs { get; set; }
-        public virtual DbSet<DirectionQ2> DirectionQ2 { get; set; }
         public virtual DbSet<VocabList> VocabLists { get; set; }
         public virtual DbSet<DirectionQ3> DirectionQ3 { get; set; }
-        public virtual DbSet<Sound> Sounds { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
+        public virtual DbSet<SportQ> SportQs { get; set; }
+        public virtual DbSet<DirectionQ2> DirectionQ2 { get; set; }
+        public virtual DbSet<SportQ2> SportQ2 { get; set; }
+        public virtual DbSet<SportQ3> SportQ3 { get; set; }
     }
 }
