@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using FYP.Models;
 using System.Web.Security;
 using System.Diagnostics;
+using System.Web.Helpers;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FYP.Controllers
 {
@@ -23,7 +26,7 @@ namespace FYP.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(User model)
+        public ActionResult Register(Member model)
         {
             using (var context = new msdb5455Entities())
             {
@@ -32,18 +35,47 @@ namespace FYP.Controllers
                 if (exists)
                 {
                     RedirectToAction("Register");
-
+                    ModelState.AddModelError("", "username in use");
                 }
                 else
                 {
-                    context.Users.Add(model);
-                    context.SaveChanges();
-                    return RedirectToAction("Login");
+                    if (model.Password == model.ConfirmPassword)
+                    {
+                        FYP.Models.User user = new Models.User();
+
+                        Guid userGuid = System.Guid.NewGuid();
+
+
+                        
+
+                        user.UserName = model.UserName;
+                        user.Password = HashSHA1(model.Password + userGuid.ToString());
+                        user.UserGuid = userGuid;
+                                               
+                        context.Users.Add(user);
+                        context.SaveChanges();
+                        return RedirectToAction("Login");
+                    }
+                   
                 }
-                ModelState.AddModelError("", "username in use");
+                
             }
 
             return View();
+        }
+
+        public static string HashSHA1(string value)
+        {
+            var sha1 = System.Security.Cryptography.SHA1.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(value);
+            var hash = sha1.ComputeHash(inputBytes);
+
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
         }
 
         [HttpPost]
@@ -51,7 +83,15 @@ namespace FYP.Controllers
         {
             using (var context = new msdb5455Entities())
             {
-                bool isValid = context.Users.Any(x => x.UserName == model.UserName && x.Password == model.Password);
+
+
+                var dbUserGuid = context.Users.Where(x => x.UserName == model.UserName).Select(x => x.UserGuid).FirstOrDefault();
+                Debug.WriteLine("guid " + dbUserGuid);
+                string hashedPassword = HashSHA1(model.Password + dbUserGuid);
+                Debug.WriteLine("hashed? " + hashedPassword);
+
+
+                bool isValid = context.Users.Any(x => x.UserName == model.UserName && x.Password == hashedPassword);
                 Debug.WriteLine("check:" + isValid);
                 if (isValid == true)
                 {

@@ -42,7 +42,7 @@ namespace FYP.Views
 
             var group = from s in db.Groups
                         select s;
-
+    
             var id = User.Identity.GetUserName();
 
 
@@ -123,6 +123,7 @@ namespace FYP.Views
                     {
                         Debug.WriteLine("result.Gid: " + result.GroupId);
                         result.GroupId = id;
+                        
                         r2.GSize = r2.GSize + 1;
                         Debug.WriteLine("model.gid: " + result.GroupId);
                         db.SaveChanges();
@@ -169,6 +170,8 @@ namespace FYP.Views
                     var result = db.Users.SingleOrDefault(s => s.UserName == userId);
                     Debug.WriteLine("result.Gid: " + result.GroupId);
                     result.GroupId = null;
+                    var r2 = db.Groups.SingleOrDefault(r => r.GroupID == id);
+                    r2.GSize = r2.GSize - 1;
                     if (result.isCreator == true)
                     {
                         result.isCreator = false;
@@ -220,8 +223,7 @@ namespace FYP.Views
                     var result = db.Users.SingleOrDefault(s => s.UserName == userId);
                     
                     Debug.WriteLine("check:" + isValid);
-                    if (result.isCreator == null || result.isCreator == false)
-                    {
+                   
                         if (isValid == true)
                         {
                             Debug.WriteLine("result: " + result.GroupId + "group: " + group.GroupID);
@@ -233,8 +235,6 @@ namespace FYP.Views
                             db.SaveChanges();
                             return RedirectToAction("GroupHome", "Groups");
                         }
-                    }
-                    ModelState.AddModelError("", "Cannot create a new group, still a group admin!");
                     return View();
                 }
             }
@@ -302,6 +302,8 @@ namespace FYP.Views
             {
                 bool isValid = context.Users.Any(x => x.UserName == userId);
                 var result = db.Users.SingleOrDefault(s => s.GroupId == id);
+                var r2 = db.Groups.SingleOrDefault(r => r.GroupID == id);
+                
                 if (isValid == true)
                 {
                     result.GroupId = null;

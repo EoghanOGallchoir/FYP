@@ -28,7 +28,7 @@
                                     <label class="col-sm-4 control-label">Subject</label>
                                     <div class="col-sm-8">
 
-                                        @Html.TextBoxFor(p => p.Message.Subject, new { @class = "form-control" })
+                                        @Html.TextBoxFor(p => p.Message.Subject, new { @class = "form-control", @maxlength= 75})
                                         @Html.ValidationMessageFor(model => model.Message.Subject)
 
                                     </div>
@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">Message</label>
                                     <div class="col-sm-8">
-                                        @Html.TextAreaFor(p => p.Message.Message1, new { @rows = 8, @class = "form-control" })
+                                        @Html.TextAreaFor(p => p.Message.Message1, new { @rows = 8, @maxlength=500, @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Message.Message1)
                                     </div>
                                 </div>

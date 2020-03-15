@@ -28,7 +28,7 @@ namespace FYP.Controllers
             ViewBag.g = gName;
             decimal totalPages = count / (decimal)pageSize;
             ViewBag.TotalPages = Math.Ceiling(totalPages);
-            vm.Messages = db.Messages.Where(x => x.GroupID == g).OrderBy(x => x.DatePosted).ToPagedList(pageNumber, pageSize);
+            vm.Messages = db.Messages.Where(x => x.GroupID == g).OrderByDescending(x => x.DatePosted).ToPagedList(pageNumber, pageSize);
             ViewBag.MessagesInOnePage = vm.Messages;
             ViewBag.PageNumber = pageNumber;
             TempData["CurrPage"] = pageNumber;

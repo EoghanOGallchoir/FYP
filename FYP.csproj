@@ -392,7 +392,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Learn.cshtml" />
-    <Content Include="Views\Home\Vocab.cshtml" />
     <Content Include="Views\Class\DirectionStart.cshtml" />
     <Content Include="Views\Class\DirectionsP1.cshtml" />
     <Content Include="Views\Class\DirectionsP2.cshtml" />
@@ -408,11 +407,6 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Class\DirectionsP3.cshtml" />
     <Content Include="Views\Class\ResultsD3.cshtml" />
-    <Content Include="Views\Sounds\Create.cshtml" />
-    <Content Include="Views\Sounds\Delete.cshtml" />
-    <Content Include="Views\Sounds\Details.cshtml" />
-    <Content Include="Views\Sounds\Edit.cshtml" />
-    <Content Include="Views\Sounds\Index.cshtml" />
     <Content Include="Views\Groups\GroupHome.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Groups\MyGroup.cshtml" />
@@ -433,6 +427,7 @@
     <Content Include="Views\Class\ResultsS2.cshtml" />
     <Content Include="Views\Class\SportP3.cshtml" />
     <Content Include="Views\Class\ResultsS3.cshtml" />
+    <Content Include="Views\Home\Vocab.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

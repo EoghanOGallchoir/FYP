@@ -52,6 +52,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="msdb5455Model.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
           <ScalarProperty Name="isCreator" ColumnName="isCreator" />
           <ScalarProperty Name="GroupId" ColumnName="GroupId" />
           <ScalarProperty Name="quiz6" ColumnName="quiz6" />

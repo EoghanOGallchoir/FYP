@@ -1,8 +1,69 @@
-﻿@using Microsoft.AspNet.Identity
-@model IEnumerable<FYP.Models.User>
+﻿@model PagedList.IPagedList<FYP.Models.VocabList>
+
+@using PagedList;
+@using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Vocab";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Vocab - Learned words/phrases from classes goes here in list format.</h2>
+
+<style>
+   
+</style>
+
+<header>
+    <h2>Vocabulary</h2>
+</header>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                IRISH
+            </th>
+            <th>
+                ENGLISH
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.Irish != null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Irish)
+                       
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.English)
+                    </td>
+                @*    <td>
+                        <audio id="player">
+                            <source src="~/Sounds/@item.Irish_Tr" id="@item.ID" type="audio/wav" />
+                        </audio>
+                        <button onclick="document.getElementById('player').play()">Play</button>
+                    </td>
+                    *@
+                </tr>
+            }
+            else
+            {
+                <tr>
+                </tr>
+            }
+        }
+    </table>
+</body>
+<footer>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Vocab", new { page = page }))
+</footer>
+
+
+
 

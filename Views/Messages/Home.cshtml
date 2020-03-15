@@ -147,7 +147,7 @@
                                                             @Html.HiddenFor(model => model.Reply.MessageId);
                                                             <label class="col-sm-2 ">Reply</label>
                                                             <div class="col-sm-9">
-                                                                @Html.TextAreaFor(p => p.Reply.ReplyMessage, new { @rows = 2, @class = "form-control" })
+                                                                @Html.TextAreaFor(p => p.Reply.ReplyMessage, new { @rows = 2, @maxlength=500, @class = "form-control" })
                                                                 @Html.ValidationMessageFor(model => model.Reply.ReplyMessage)
 
                                                             </div>

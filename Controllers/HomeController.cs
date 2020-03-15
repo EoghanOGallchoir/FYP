@@ -64,21 +64,28 @@ namespace WebApplication3.Controllers
             return View(user);
         }
 
-        public ActionResult Vocab()
+        public ActionResult Vocab(int? page)
         {
-            List<User> user = new List<User>();
-            foreach (var u in db.Users)
+            List<VocabList> vocabs = new List<VocabList>();
+            foreach (var u in db.VocabLists)
             {
-                user.Add(u);
+                vocabs.Add(u);
+               
             }
 
-            return View(user);
+            var vocab = from s in db.VocabLists
+                        select s;
+
+            vocab = vocab.OrderBy(x => x.ID);
+
+
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(vocab.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult GroupChat()
-        {
-            return View();
-        }
-
+       
     }
 }

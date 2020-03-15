@@ -49,8 +49,8 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="quizID" Type="Int32" />
-    <Property Name="Irish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Irish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="English" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Irish_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DirectionQ3">
@@ -76,7 +76,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ProgressXP" Type="Int32" />
     <Property Name="quiz1" Type="Boolean" />
     <Property Name="quiz2" Type="Boolean" />
@@ -87,6 +87,7 @@
     <Property Name="GroupId" Type="Int32" />
     <Property Name="isCreator" Type="Boolean" />
     <NavigationProperty Name="Group" Relationship="msdb5455Model.FK_User_Groups" FromRole="User" ToRole="Group" />
+    <Property Name="UserGuid" Type="Guid" />
   </EntityType>
   <EntityType Name="Group">
     <Key>
