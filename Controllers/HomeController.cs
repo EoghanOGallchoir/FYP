@@ -78,7 +78,34 @@ namespace WebApplication3.Controllers
 
             vocab = vocab.OrderBy(x => x.ID);
 
+            var userP = db.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.ProgressXP).SingleOrDefault();
+            
 
+            if (userP == 85)
+            {
+                vocab = vocab.Where(x => x.quizID == 5 && x.quizID == 4 && x.quizID == 3 && x.quizID == 2 && x.quizID == 1);
+            }
+            else if (userP == 65)
+            {
+                vocab = vocab.Where(x => x.quizID == 4 && x.quizID == 3 && x.quizID == 2 && x.quizID == 1);
+            }
+            else if (userP == 50)
+            {
+                vocab = vocab.Where(x => x.quizID == 3 && x.quizID == 2 && x.quizID == 1);
+            }
+            else if (userP == 35)
+            {
+                vocab = vocab.Where(x => x.quizID == 2 && x.quizID == 1);
+            }
+            else if (userP == 15)
+            {
+                vocab = vocab.Where(x => x.quizID == 1);
+            }
+            else if (userP == null)
+            {
+                vocab = vocab.Where(x => x.quizID == 0);
+            }
+            
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);

@@ -4,11 +4,11 @@
     ViewBag.Title = "Learning Home";
 }
 
-<h2>Learning Home</h2>
+<h2>Choose a Lesson</h2>
 <style>
     .fop-searchbox {
         position: relative;
-        left: 70%;
+     
         top: -40px;
     }
 
@@ -20,6 +20,16 @@
 </style>
 
 <style>
+
+    .row{
+        float:left; 
+    }
+
+    .row2{
+        float:right;
+    }
+
+
     .column {
         float: left;
         width: auto;
@@ -44,7 +54,7 @@
 
 <body onload="setupSearchBox('formname', 'https://www.focloir.ie/', 'en');">
 
-    <div class="row">
+    <div class="row2">
         <form class="fop-searchbox" id="formname" name="formname" method="get" autocomplete="off">
             <input class="fop-textbox" name="q" placeholder="Search an English word..." type="text" ; />
             <input class="fop-submit-btn" type="image" value="Search" src="~/Images/search.png" style="width:20px;height:20px" />
@@ -52,86 +62,24 @@
     </div>
     <br />
 
-    @if (User.Identity.IsAuthenticated == true)
-    {
+  
 
-        foreach (var item in Model)
-        {
-            if (User.Identity.GetUserName() == item.UserName)
-            {
-                if (item.quiz1 == true && item.quiz2 == true && item.quiz3 == true && item.quiz4 == true && item.quiz5 == true && item.quiz6 == true)
-                {
-
-                    <div class="row">
-                        <div class="column">
-                            <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
-                                Ag lorg Treoracha
-                            </a>
-                        </div>
-                        <div class="column-tic">
-                            <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
-                        </div>
-                    </div>
-
-                    <br />
-                    <div class="row">
-                        <div class="column">
-                            <a role="button" class="btn btn-primary btn-lg" href="~/Class/SportStart">
-                                Ag Eisteacht le Sport
-                            </a>
-                        </div>
-                        <div class="column-tic">
-                            <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
-                        </div>
-                    </div>
-
-                    
-                }
-                else if (item.quiz1 == true && item.quiz2 == true && item.quiz3 == true)
-                {
-                    <div class="row">
-                        <div class="column">
-                            <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
-                                Ag lorg Treoracha
-                            </a>
-                        </div>
-                        <div class="column-tic">
-                            <img src="~/Images/tick.jpg" style="width:28px;height:28px;" />
-                        </div>
-                    </div>
-
-                    <br />
-                    <div class="column">
-                        <a role="button" class="btn btn-primary btn-lg" href="~/Class/SportStart">
-                            Listening to Sport
-                        </a>
-                    </div>
                     <br />
                     <br />
 
-                }
-                else
-                {
+                 <br />
                     <div class="row">
-                        <div class="column">
-                            <a role="button" class="btn btn-primary btn-lg" href="~/Class/DirectionStart">
-                                Asking for Directions
-                            </a>
-                        </div>
-                        <br />
-                        <div class="column">
-                            <a role="button" class="btn btn-primary btn-lg" href="~/Class/SportStart">
-                                Listening to Sport
-                            </a>
-                        </div>
-                        <br />
-                        <br />
+                                <a href="~/Class/DirectionStart">
+                                    <img border="0" alt="Directions" src="~/Images/Directions.png" width="300" height="300" title="Learning Directions">
+                                </a><br />
+                        
                     </div>
-                }
-            }
-
-        }
-    }
+                   <div class="row2">
+                                <a href="~/Class/SportStart">
+                                    <img border="0" alt="Directions" src="~/Images/sport.png" width="600" height="300" title="Listening to Sport">
+                                </a><br />
+                    </div>
+             
 
 
 </body>

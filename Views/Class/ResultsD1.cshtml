@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Results of Directions Intro</h2>
+<h2>Results of Directions Introduction</h2>
 
 <body>
 
@@ -20,6 +20,8 @@
         {
             <div>
                 <h1>You scored @TempData["Score"]/4. You will need 4/4 to progress on from this class.</h1>
+                <br /> <h2>Questions Wrong:</h2>
+                       <h3>@Html.Raw(TempData["Wrong Answers:"])</h3>
             </div>
         }
 

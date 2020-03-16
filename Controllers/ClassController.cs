@@ -87,11 +87,20 @@ namespace FYP.Controllers
 
             var db_ans = db.DirectionQs.Where(i => i.Qid == q.Qid-1).Select(i => i.CorrectAns).FirstOrDefault();
             Debug.WriteLine("idq1.1: " + db_ans);
+          
             if (attemptedAns.Equals(db_ans))
             {
                 
                 TempData["Score"] = Convert.ToInt32(TempData["Score"]) + 1;
                 Debug.WriteLine("Score: " + TempData["Score"]);
+            }
+            else
+            {
+
+               
+                var wrong = q.Qid - 1;
+                TempData["Wrong Answers:"] = Convert.ToString(TempData["Wrong Answers:"]) + "You got question "+ wrong.ToString() + " wrong." + "<br />";
+               //TempData["Wrong Answers:"] = MvcHtmlString.Create("You got question " + wrong + " wrong" + "<br />");
             }
         
             if (db_ans == null)
@@ -101,6 +110,7 @@ namespace FYP.Controllers
 
 
            
+
             TempData.Keep();
 
             if (Convert.ToInt32(TempData["Score"]) == 4)
@@ -179,7 +189,11 @@ namespace FYP.Controllers
     
         public ActionResult DirectionsP2()
         {
-          
+
+            var access = db.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.ProgressXP).SingleOrDefault();
+            if (access == 15)
+            {
+
 
                 if (TempData["q2ID"] == null)
                 {
@@ -201,7 +215,10 @@ namespace FYP.Controllers
                     TempData["q2ID"] = 1;
                     return RedirectToAction("ResultsD2");
                 }
-           
+            }
+
+            return RedirectToAction("DirectionStart");
+
         }
 
         [HttpPost]
@@ -278,6 +295,14 @@ namespace FYP.Controllers
                 }
 
             }
+            else
+            {
+
+
+                var wrong = q2.Qid - 1;
+                TempData["Wrong Answers2:"] = Convert.ToString(TempData["Wrong Answers2:"]) + "You got question " + wrong.ToString() + " wrong." + "<br />";
+                
+            }
 
             if (Convert.ToInt32(TempData["Score2"]) == 4)
             {
@@ -351,34 +376,40 @@ namespace FYP.Controllers
 
         public ActionResult DirectionsP3()
         {
-            
-            if (TempData["q3ID"] == null)
+            var access = db.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.ProgressXP).SingleOrDefault();
+            if (access == 35)
             {
-                TempData["q3ID"] = 1;
-            }
-
-            try
-            {
-                Debug.WriteLine("Inside DP3 try");
-                DirectionQ3 q = null;
-                int q3ID = Convert.ToInt32(TempData["q3ID"]);
-                Debug.WriteLine("q ID: "+q3ID);
-                q = db.DirectionQ3.Where(x => x.Qid == q3ID).SingleOrDefault();
-                Debug.WriteLine("Q: "+ q);
-                TempData["q3ID"] = ++q.Qid;
-                TempData.Keep();
-                Debug.WriteLine("before: " + q.CorrectAns);
-                return View(q);
-            }
-            catch (Exception)
-            {
-                TempData["q3ID"] = 1;
-                Debug.WriteLine("Inside DP3 catch");
-                TempData.Keep();
-                return RedirectToAction("ResultsD3");
-            }
 
 
+
+                if (TempData["q3ID"] == null)
+                {
+                    TempData["q3ID"] = 1;
+                }
+
+                try
+                {
+                    Debug.WriteLine("Inside DP3 try");
+                    DirectionQ3 q = null;
+                    int q3ID = Convert.ToInt32(TempData["q3ID"]);
+                    Debug.WriteLine("q ID: " + q3ID);
+                    q = db.DirectionQ3.Where(x => x.Qid == q3ID).SingleOrDefault();
+                    Debug.WriteLine("Q: " + q);
+                    TempData["q3ID"] = ++q.Qid;
+                    TempData.Keep();
+                    Debug.WriteLine("before: " + q.CorrectAns);
+                    return View(q);
+                }
+                catch (Exception)
+                {
+                    TempData["q3ID"] = 1;
+                    Debug.WriteLine("Inside DP3 catch");
+                    TempData.Keep();
+                    return RedirectToAction("ResultsD3");
+                }
+
+            }
+            return RedirectToAction("DirectionStart");
             // return View();
         }
 
@@ -402,6 +433,15 @@ namespace FYP.Controllers
                 TempData["Score3"] = Convert.ToInt32(TempData["Score3"]) + 1;
                 Debug.WriteLine("Entered " + TempData["Score3"]);
             }
+            else
+            {
+
+
+                var wrong = q.Qid - 1;
+                TempData["Wrong Answers3:"] = Convert.ToString(TempData["Wrong Answers:3"]) + "Fuair tú ceist " + wrong.ToString() + " mícheart." + "<br />";
+                
+            }
+
             Debug.WriteLine(TempData["Score3"]);
             if (db_ans == null)
             {
@@ -503,32 +543,37 @@ namespace FYP.Controllers
 
         public ActionResult SportP1()
         {
-            string userName = User.Identity.GetUserName();
-            //var result = db.Users.SingleOrDefault(s => s.UserName == userName);
-
-            if (TempData["q4ID"] == null)
+            var access = db.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.ProgressXP).SingleOrDefault();
+            if (access == 50)
             {
-                TempData["q4ID"] = 1;
-            }
 
-            try
-            {
-                SportQ q = null;
-                int qID = Convert.ToInt32(TempData["q4ID"]);
-                q = db.SportQs.Where(x => x.Qid == qID).SingleOrDefault();
-                TempData["q4ID"] = ++q.Qid;
-                TempData.Keep();
-                Debug.WriteLine("before: " + q.correctAns);
-                return View(q);
-            }
-            catch (Exception)
-            {
-                TempData["q4ID"] = 1;
-                TempData.Keep();
-                return RedirectToAction("ResultsS1");
-            }
+                string userName = User.Identity.GetUserName();
+                //var result = db.Users.SingleOrDefault(s => s.UserName == userName);
 
+                if (TempData["q4ID"] == null)
+                {
+                    TempData["q4ID"] = 1;
+                }
 
+                try
+                {
+                    SportQ q = null;
+                    int qID = Convert.ToInt32(TempData["q4ID"]);
+                    q = db.SportQs.Where(x => x.Qid == qID).SingleOrDefault();
+                    TempData["q4ID"] = ++q.Qid;
+                    TempData.Keep();
+                    Debug.WriteLine("before: " + q.correctAns);
+                    return View(q);
+                }
+                catch (Exception)
+                {
+                    TempData["q4ID"] = 1;
+                    TempData.Keep();
+                    return RedirectToAction("ResultsS1");
+                }
+
+            }
+            return RedirectToAction("SportStart");
         }
 
         [HttpPost]
@@ -551,6 +596,14 @@ namespace FYP.Controllers
 
                 TempData["Score4"] = Convert.ToInt32(TempData["Score4"]) + 1;
                 Debug.WriteLine("Score: " + TempData["Score4"]);
+            }
+            else
+            {
+
+
+                var wrong = q.Qid - 1;
+                TempData["Wrong Answers4:"] = Convert.ToString(TempData["Wrong Answers:4"]) + "Fuair tú ceist " + wrong.ToString() + " mícheart." + "<br />";
+
             }
 
             if (db_ans == null)
@@ -636,26 +689,32 @@ namespace FYP.Controllers
 
         public ActionResult SportP2()
         {
-            if (TempData["q2ID"] == null)
+            var access = db.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.ProgressXP).SingleOrDefault();
+            if (access == 65)
             {
-                TempData["q2ID"] = 1;
-            }
 
-            try
-            {
-                SportQ2 q = null;
-                int q5ID = Convert.ToInt32(TempData["q5ID"].ToString());
-                q = db.SportQ2.Where(x => x.Qid == q5ID).SingleOrDefault();
-                TempData["q5ID"] = ++q.Qid;
-                TempData.Keep();
+                if (TempData["q2ID"] == null)
+                {
+                    TempData["q2ID"] = 1;
+                }
 
-                return View(q);
+                try
+                {
+                    SportQ2 q = null;
+                    int q5ID = Convert.ToInt32(TempData["q5ID"].ToString());
+                    q = db.SportQ2.Where(x => x.Qid == q5ID).SingleOrDefault();
+                    TempData["q5ID"] = ++q.Qid;
+                    TempData.Keep();
+
+                    return View(q);
+                }
+                catch (Exception)
+                {
+                    TempData["q5ID"] = 1;
+                    return RedirectToAction("ResultsS2");
+                }
             }
-            catch (Exception)
-            {
-                TempData["q5ID"] = 1;
-                return RedirectToAction("ResultsS2");
-            }
+            return RedirectToAction("SportStart");
         }
 
         [HttpPost]
@@ -726,6 +785,14 @@ namespace FYP.Controllers
                 {
                     TempData["Score5"] = Convert.ToInt32(TempData["Score5"]) + 1;
                 }
+
+            }
+            else
+            {
+
+
+                var wrong = q2.Qid - 1;
+                TempData["Wrong Answers5:"] = Convert.ToString(TempData["Wrong Answers:5"]) + "Fuair tú ceist " + wrong.ToString() + " mícheart." + "<br />";
 
             }
 
@@ -800,33 +867,39 @@ namespace FYP.Controllers
 
         public ActionResult SportP3()
         {
-            if (TempData["q6ID"] == null)
+            var access = db.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.ProgressXP).SingleOrDefault();
+            if (access == 85)
             {
-                TempData["q6ID"] = 1;
-            }
+
+                if (TempData["q6ID"] == null)
+                {
+                    TempData["q6ID"] = 1;
+                }
 
 
 
-            try
-            {
-                Debug.WriteLine("Inside DP3 try");
-                SportQ3 q = null;
-                int q6ID = Convert.ToInt32(TempData["q6ID"]);
-                Debug.WriteLine("q ID: " + q6ID);
-                q = db.SportQ3.Where(x => x.Qid == q6ID).SingleOrDefault();
-                Debug.WriteLine("Q: " + q);
-                TempData["q6ID"] = ++q.Qid;
-                TempData.Keep();
-                Debug.WriteLine("before: " + q.correctAns);
-                return View(q);
+                try
+                {
+                    Debug.WriteLine("Inside DP3 try");
+                    SportQ3 q = null;
+                    int q6ID = Convert.ToInt32(TempData["q6ID"]);
+                    Debug.WriteLine("q ID: " + q6ID);
+                    q = db.SportQ3.Where(x => x.Qid == q6ID).SingleOrDefault();
+                    Debug.WriteLine("Q: " + q);
+                    TempData["q6ID"] = ++q.Qid;
+                    TempData.Keep();
+                    Debug.WriteLine("before: " + q.correctAns);
+                    return View(q);
+                }
+                catch (Exception)
+                {
+                    TempData["q6ID"] = 1;
+                    Debug.WriteLine("Inside DP3 catch");
+                    TempData.Keep();
+                    return RedirectToAction("ResultsS3");
+                }
             }
-            catch (Exception)
-            {
-                TempData["q6ID"] = 1;
-                Debug.WriteLine("Inside DP3 catch");
-                TempData.Keep();
-                return RedirectToAction("ResultsS3");
-            }
+            return RedirectToAction("SportStart");
         }
 
         [HttpPost]
@@ -850,6 +923,14 @@ namespace FYP.Controllers
                 Debug.WriteLine("im adding");
                 TempData["Score6"] = Convert.ToInt32(TempData["Score6"]) + 1;
                 Debug.WriteLine("Entered " + TempData["Score6"]);
+            }
+            else
+            {
+
+
+                var wrong = q.Qid - 1;
+                TempData["Wrong Answers6:"] = Convert.ToString(TempData["Wrong Answers:6"]) + "Fuair tú ceist " + wrong.ToString() + " mícheart." + "<br />";
+
             }
             Debug.WriteLine(TempData["Score6"]);
             if (x == null)
