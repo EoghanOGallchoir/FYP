@@ -85,7 +85,7 @@ namespace FYP.Views
             ViewBag.GName = gName;
             Debug.WriteLine("someting: " + q);
 
-            return View(db.Users.Where(x => x.GroupId == q.FirstOrDefault()));
+            return View(db.Users.Where(x => x.GroupId == q.FirstOrDefault()).OrderByDescending(x => x.ProgressXP));
         }
 
 

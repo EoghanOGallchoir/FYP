@@ -104,6 +104,7 @@ namespace WebApplication3.Controllers
             else if (userP == null)
             {
                 vocab = vocab.Where(x => x.quizID == 0);
+                ViewBag.Empty = "No lessons learned yet!";
             }
             
 

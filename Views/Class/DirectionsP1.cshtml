@@ -102,14 +102,33 @@ else
                 @if (Model.Option1_Tr != null)
                 {
 
-                    <h3>
-                        @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1<audio id="1">
-                            <source src="~/Sounds/@Model.Option1_Tr" type="audio/ogg" />
+                <h3>
+                    @Html.RadioButtonFor(x => x.option1, Model.option1, new { @Name = "Model.Qid" }) @Model.option1<audio id="1">
+                        <source src="~/Sounds/@Model.Option1_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('1').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                    @if (Model.Option1_Tr_C != null)
+                    {
+                        <audio id="5">
+                            <source src="~/Sounds/@Model.Option1_Tr_C" type="audio/ogg" />
                         </audio>
-                        <a onclick="document.getElementById('1').play();" onmouseover="" style="cursor: pointer;">
-                            <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                        <a onclick="document.getElementById('5').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-c2.png" style="width: 30px; height: 30px">
                         </a>
-                    </h3>
+                    }
+                   
+                    @if (Model.Option1_Tr_M != null)
+                    {
+                        <audio id="9">
+                            <source src="~/Sounds/@Model.Option1_Tr_M" type="audio/ogg" />
+                        </audio>
+                        <a onclick="document.getElementById('9').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-m.png" style="width: 30px; height: 30px">
+                        </a>
+                    }
+                </h3>
 
 
 
@@ -122,14 +141,33 @@ else
             <div class="row">
                 @if (Model.Option2_Tr != null)
                 {
-                    <h3>
-                        @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2<audio id="2">
-                            <source src="~/Sounds/@Model.Option2_Tr" type="audio/ogg" />
+                <h3>
+                    @Html.RadioButtonFor(x => x.option2, Model.option2, new { @Name = "Model.Qid" }) @Model.option2<audio id="2">
+                        <source src="~/Sounds/@Model.Option2_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                    @if (Model.Option2_Tr_C != null)
+                    {
+                        <audio id="6">
+                            <source src="~/Sounds/@Model.Option2_Tr_C" type="audio/ogg" />
                         </audio>
-                        <a onclick="document.getElementById('2').play();" onmouseover="" style="cursor: pointer;">
-                            <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                        <a onclick="document.getElementById('6').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-c2.png" style="width: 30px; height: 30px">
                         </a>
-                    </h3>
+                    }
+                    
+                    @if (Model.Option2_Tr_M != null)
+                    {
+                        <audio id="10">
+                            <source src="~/Sounds/@Model.Option2_Tr_M" type="audio/ogg" />
+                        </audio>
+                        <a onclick="document.getElementById('10').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-m.png" style="width: 30px; height: 30px">
+                        </a>
+                    }
+                </h3>
                 }
                 else
                 {
@@ -141,14 +179,33 @@ else
                 @if (Model.Option3_Tr != null)
                 {
 
-                    <h3>
-                        @Html.RadioButtonFor(x => x.option3, Model.option3, new { @Name = "Model.Qid" }) @Model.option3 <audio id="3">
-                            <source src="~/Sounds/@Model.Option3_Tr" type="audio/ogg" />
+                <h3>
+                    @Html.RadioButtonFor(x => x.option3, Model.option3, new { @Name = "Model.Qid" }) @Model.option3 <audio id="3">
+                        <source src="~/Sounds/@Model.Option3_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('3').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                    @if (Model.Option3_Tr_C != null)
+                    {
+                        <audio id="7">
+                            <source src="~/Sounds/@Model.Option3_Tr_C" type="audio/ogg" />
                         </audio>
-                        <a onclick="document.getElementById('3').play();" onmouseover="" style="cursor: pointer;">
-                            <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                        <a onclick="document.getElementById('7').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-c2.png" style="width: 30px; height: 30px">
                         </a>
-                    </h3>
+                    }
+                   
+                    @if (Model.Option3_Tr_M != null)
+                    {
+                        <audio id="11">
+                            <source src="~/Sounds/@Model.Option3_Tr_M" type="audio/ogg" />
+                        </audio>
+                        <a onclick="document.getElementById('11').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-m.png" style="width: 30px; height: 30px">
+                        </a>
+                    }
+                </h3>
                 }
                 else
                 {
@@ -160,14 +217,32 @@ else
                 @if (Model.Option4_Tr != null)
                 {
 
-                    <h3>
-                        @Html.RadioButtonFor(x => x.option4, Model.option4, new { @Name = "Model.Qid" }) @Model.option4 <audio id="4">
-                            <source src="~/Sounds/@Model.Option4_Tr" type="audio/ogg" />
+                <h3>
+                    @Html.RadioButtonFor(x => x.option4, Model.option4, new { @Name = "Model.Qid" }) @Model.option4 <audio id="4">
+                        <source src="~/Sounds/@Model.Option4_Tr" type="audio/ogg" />
+                    </audio>
+                    <a onclick="document.getElementById('4').play();" onmouseover="" style="cursor: pointer;">
+                        <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                    </a>
+                    @if (Model.Option4_Tr_C != null)
+                    {
+                        <audio id="8">
+                            <source src="~/Sounds/@Model.Option4_Tr_C" type="audio/ogg" />
                         </audio>
-                        <a onclick="document.getElementById('4').play();" onmouseover="" style="cursor: pointer;">
-                            <img src="~/Images/icons8-sound-50.png" style="width: 30px; height: 30px">
+                        <a onclick="document.getElementById('8').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-c2.png" style="width: 30px; height: 30px">
                         </a>
-                    </h3>
+                    }
+                    @if (Model.Option4_Tr_M != null)
+                    {
+                        <audio id="12">
+                            <source src="~/Sounds/@Model.Option4_Tr_M" type="audio/ogg" />
+                        </audio>
+                        <a onclick="document.getElementById('12').play();" onmouseover="" style="cursor: pointer;">
+                            <img src="~/Images/sound-con-m.png" style="width: 30px; height: 30px">
+                        </a>
+                    }
+                </h3>
                 }
                 else
                 {

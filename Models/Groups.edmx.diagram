@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="msdb5455Model.Reply" Width="1.5" PointX="4.625" PointY="4.125" />
         <AssociationConnector Association="msdb5455Model.FK_Message_GroupId" />
         <AssociationConnector Association="msdb5455Model.FK_Reply_Message" />
-        <EntityTypeShape EntityType="msdb5455Model.SportQ" Width="1.5" PointX="8.125" PointY="5.875" />
+        <EntityTypeShape EntityType="msdb5455Model.SportQ" Width="1.5" PointX="8.125" PointY="7.375" />
         <EntityTypeShape EntityType="msdb5455Model.DirectionQ2" Width="1.5" PointX="9.75" PointY="2.125" />
         <EntityTypeShape EntityType="msdb5455Model.SportQ2" Width="1.5" PointX="9.875" PointY="5.875" />
         <EntityTypeShape EntityType="msdb5455Model.SportQ3" Width="1.5" PointX="11.5" PointY="5.875" />

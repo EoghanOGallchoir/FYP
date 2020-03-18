@@ -31,9 +31,10 @@
 
         @foreach (var item in Model)
         {
+           
             if (item.Irish != null)
             {
-                
+
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Irish)
@@ -54,6 +55,7 @@
             else
             {
                 <tr>
+                    
                 </tr>
             }
         }

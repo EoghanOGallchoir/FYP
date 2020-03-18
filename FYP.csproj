@@ -291,6 +291,11 @@
     <Content Include="Images\nature.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\shirt.png" />
+    <Content Include="Images\sound-con %282%29.png" />
+    <Content Include="Images\sound-con-c.png" />
+    <Content Include="Images\sound-con-c2.png" />
+    <Content Include="Images\sound-con-m.png" />
+    <Content Include="Images\sound-con.png" />
     <Content Include="Images\sound.png" />
     <Content Include="Images\sport.png" />
     <Content Include="Images\tick.jpg" />
@@ -342,8 +347,14 @@
     <Content Include="Sounds\carta-bui.wav" />
     <Content Include="Sounds\cas-chle.wav" />
     <Content Include="Sounds\cas-dheis.wav" />
+    <Content Include="Sounds\ceard-e-sin-c.m4a" />
+    <Content Include="Sounds\ceard-e-sin-m.wav" />
+    <Content Include="Sounds\cen-ait-c.m4a" />
+    <Content Include="Sounds\cen-ait-m.wav" />
     <Content Include="Sounds\cen-ait-ostan.wav" />
     <Content Include="Sounds\cen-ait.wav" />
+    <Content Include="Sounds\cen-fath-c.m4a" />
+    <Content Include="Sounds\cen-fath-m.wav" />
     <Content Include="Sounds\cen-fath.wav" />
     <Content Include="Sounds\chaill-dnag.wav" />
     <Content Include="Sounds\chaill-liathroid.wav" />
@@ -373,6 +384,8 @@
     <Content Include="Sounds\sliotar.wav" />
     <Content Include="Sounds\stocai.wav" />
     <Content Include="Sounds\teach-tabhairne.wav" />
+    <Content Include="Sounds\tiomaint-c.m4a" />
+    <Content Include="Sounds\tiomaint-m.wav" />
     <Content Include="Sounds\Tiomaint.wav" />
     <Content Include="Sounds\tosai.wav" />
     <Content Include="Views\Home\About.cshtml" />

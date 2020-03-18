@@ -22,6 +22,14 @@
           <Property Name="Option3_Tr" Type="nvarchar(max)" />
           <Property Name="Option4_Tr" Type="nvarchar(max)" />
           <Property Name="option2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option1_Tr_C" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option2_Tr_C" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option3_Tr_C" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option4_Tr_C" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option1_Tr_M" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option2_Tr_M" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option3_Tr_M" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option4_Tr_M" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DirectionQ2">
           <Key>
@@ -262,6 +270,14 @@
           <Property Name="Option3_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Option4_Tr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="notacol" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Option1_Tr_C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option2_Tr_C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option3_Tr_C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option4_Tr_C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option1_Tr_M" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option2_Tr_M" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option3_Tr_M" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option4_Tr_M" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="VocabList">
           <Key>
@@ -446,6 +462,14 @@
           <EntitySetMapping Name="DirectionQs">
             <EntityTypeMapping TypeName="msdb5455Model.DirectionQ">
               <MappingFragment StoreEntitySet="DirectionQ">
+                <ScalarProperty Name="Option4_Tr_M" ColumnName="Option4_Tr_M" />
+                <ScalarProperty Name="Option3_Tr_M" ColumnName="Option3_Tr_M" />
+                <ScalarProperty Name="Option2_Tr_M" ColumnName="Option2_Tr_M" />
+                <ScalarProperty Name="Option1_Tr_M" ColumnName="Option1_Tr_M" />
+                <ScalarProperty Name="Option4_Tr_C" ColumnName="Option4_Tr_C" />
+                <ScalarProperty Name="Option3_Tr_C" ColumnName="Option3_Tr_C" />
+                <ScalarProperty Name="Option2_Tr_C" ColumnName="Option2_Tr_C" />
+                <ScalarProperty Name="Option1_Tr_C" ColumnName="Option1_Tr_C" />
                 <ScalarProperty Name="notacol" ColumnName="notacol" />
                 <ScalarProperty Name="Option4_Tr" ColumnName="Option4_Tr" />
                 <ScalarProperty Name="Option3_Tr" ColumnName="Option3_Tr" />

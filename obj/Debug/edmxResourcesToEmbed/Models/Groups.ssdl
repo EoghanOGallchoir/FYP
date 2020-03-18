@@ -17,6 +17,14 @@
     <Property Name="Option3_Tr" Type="nvarchar(max)" />
     <Property Name="Option4_Tr" Type="nvarchar(max)" />
     <Property Name="option2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option1_Tr_C" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option2_Tr_C" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option3_Tr_C" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option4_Tr_C" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option1_Tr_M" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option2_Tr_M" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option3_Tr_M" Type="nvarchar" MaxLength="50" />
+    <Property Name="Option4_Tr_M" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="DirectionQ2">
     <Key>
