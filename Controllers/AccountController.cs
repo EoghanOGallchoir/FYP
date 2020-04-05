@@ -7,8 +7,8 @@ using FYP.Models;
 using System.Web.Security;
 using System.Diagnostics;
 using System.Web.Helpers;
-using System.Security.Cryptography;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace FYP.Controllers
 {
@@ -46,8 +46,6 @@ namespace FYP.Controllers
                         Guid userGuid = System.Guid.NewGuid();
 
 
-                        
-
                         user.UserName = model.UserName;
                         user.Password = HashSHA1(model.Password + userGuid.ToString());
                         user.UserGuid = userGuid;
@@ -64,10 +62,10 @@ namespace FYP.Controllers
             return View();
         }
 
-        public static string HashSHA1(string value)
+        public static string HashSHA1(string password)
         {
-            var sha1 = System.Security.Cryptography.SHA1.Create();
-            var inputBytes = Encoding.ASCII.GetBytes(value);
+            var sha1 = SHA1.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(password);
             var hash = sha1.ComputeHash(inputBytes);
 
             var sb = new StringBuilder();

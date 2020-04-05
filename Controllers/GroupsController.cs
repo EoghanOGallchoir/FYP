@@ -78,14 +78,17 @@ namespace FYP.Views
         {
 
             var user = User.Identity.Name;
-            var q = db.Users.Where(x => x.UserName == id).Select(x => x.GroupId);
+            var q = db.Users.Where(x => x.UserName == id).Select(x => x.GroupId).FirstOrDefault();
             var g = db.Users.Where(x => x.UserName == user).Select(x => x.GroupId).FirstOrDefault();
             var gName = db.Groups.Where(x => x.GroupID == g).Select(x => x.GName).FirstOrDefault();
+            var creator = db.Users.Where(x => x.UserName == user).Select(x => x.isCreator).FirstOrDefault();
 
             ViewBag.GName = gName;
+            ViewBag.ID = q;
+            ViewBag.Creat = creator;
             Debug.WriteLine("someting: " + q);
 
-            return View(db.Users.Where(x => x.GroupId == q.FirstOrDefault()).OrderByDescending(x => x.ProgressXP));
+            return View(db.Users.Where(x => x.GroupId == q).OrderByDescending(x => x.ProgressXP));
         }
 
 
@@ -175,6 +178,12 @@ namespace FYP.Views
                     if (result.isCreator == true)
                     {
                         result.isCreator = false;
+                    }
+                    if(r2.GSize == 0)
+                    {
+                      
+                        Group group = db.Groups.Find(id);
+                        db.Groups.Remove(group);
                     }
                     Debug.WriteLine("model.gid: " + result.GroupId);
                     db.SaveChanges();
@@ -269,7 +278,7 @@ namespace FYP.Views
             {
                 db.Entry(group).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("MyGroup", "Home", new { id = user});
+                return RedirectToAction("MyGroup", "Groups", new { id = user});
             }
             return View(group);
         }
@@ -297,22 +306,31 @@ namespace FYP.Views
             Group group = db.Groups.Find(id);
           
             string userId = User.Identity.GetUserName();
-           
+
             using (var context = new msdb5455Entities())
             {
                 bool isValid = context.Users.Any(x => x.UserName == userId);
-                var result = db.Users.SingleOrDefault(s => s.GroupId == id);
                 var r2 = db.Groups.SingleOrDefault(r => r.GroupID == id);
-                
-                if (isValid == true)
+                var removing = db.Users.Where(s => s.GroupId == id);
+
+            
+
+                bool isValid2 = context.Users.Any(x => x.GroupId == id);
+
+                if (isValid2 == true)
                 {
-                    result.GroupId = null;
-                    result.isCreator = false;
+                    var result2 = db.Users.SingleOrDefault(s => s.UserName == userId);
+                    Debug.WriteLine("result.Gid: " + result2.GroupId);
+                    result2.GroupId = null;
+                    if(result2.isCreator == true)
+                    {
+                        result2.isCreator = false;
+                    }
                 }
             }
             db.Groups.Remove(group);
             db.SaveChanges();
-            return RedirectToAction("GroupHome", "Home");
+            return RedirectToAction("GroupHome", "Groups");
         }
 
         protected override void Dispose(bool disposing)

@@ -26,7 +26,7 @@ namespace FYP.Controllers
 
         public ActionResult DirectionStart()
         {
-
+            TempData.Clear();
             TempData["Score"] = 0;
             TempData["Score2"] = 0;
             TempData["Score3"] = 0;
@@ -100,7 +100,7 @@ namespace FYP.Controllers
                
                 var wrong = q.Qid - 1;
                 TempData["Wrong Answers:"] = Convert.ToString(TempData["Wrong Answers:"]) + "You got question "+ wrong.ToString() + " wrong." + "<br />";
-               //TempData["Wrong Answers:"] = MvcHtmlString.Create("You got question " + wrong + " wrong" + "<br />");
+              
             }
         
             if (db_ans == null)
@@ -117,10 +117,7 @@ namespace FYP.Controllers
             {
                 if (ModelState.IsValid)
                  {
-                Debug.WriteLine("Model Valid");
-               // TempData.Keep();
-                Debug.WriteLine(TempData["Score"]);
-                //Debug.WriteLine(scoreq);
+               
                 string userId = User.Identity.GetUserName();
                 Debug.WriteLine("user.id.guid: " + userId);
                 
@@ -246,22 +243,20 @@ namespace FYP.Controllers
             TempData.Keep();
 
 
-            string x = ans;
-            int n = x.Length;
+            string attempted = ans;
+            int n = attempted.Length;
 
-            string t = db_ans;
-            int m = t.Length;
+            string correctAns = db_ans;
+            int m = correctAns.Length;
             int[,] d = new int[n + 1, m + 1];
 
             // Step 2
             for (int i = 0; i <= n; d[i, 0] = i++)
             {
             }
-
             for (int j = 0; j <= m; d[0, j] = j++)
             {
             }
-
             // Step 3
             for (int i = 1; i <= n; i++)
             {
@@ -269,7 +264,7 @@ namespace FYP.Controllers
                 for (int j = 1; j <= m; j++)
                 {
                     // Step 5
-                    int cost = (t[j - 1] == x[i - 1]) ? 0 : 1;
+                    int cost = (correctAns[j - 1] == attempted[i - 1]) ? 0 : 1;
 
                     // Step 6
                     d[i, j] = Math.Min(
@@ -279,21 +274,16 @@ namespace FYP.Controllers
             }
             // Step 7
             var comp =  d[n, m];
-            Debug.WriteLine("Comparison: " + comp);
-
-            var similarity = (1.0 - ((double)comp / (double)Math.Max(x.Length, t.Length)));
-            Debug.WriteLine("Similarity: " + similarity);
-
+            var similarity = (1.0 - ((double)comp / (double)Math.Max(attempted.Length, correctAns.Length)));
+           
             //contains one of the keywords
             if (ans.Contains(db_k1) || ans.Contains(db_k2))
             {
-
                 //similarity greater than .7 (70%)
                 if (similarity > 0.7)
                 {
                     TempData["Score2"] = Convert.ToInt32(TempData["Score2"]) + 1;
                 }
-
             }
             else
             {

@@ -10,8 +10,7 @@
 <style>
 
     .tr:nth-child(1) td {
-        background-color:gold;
-
+        background-color: gold;
     }
 
     .tr:nth-child(2) td {
@@ -21,9 +20,10 @@
     .tr:nth-child(3) td {
         background-color: #cd7f32;
     }
-.table{
-    background-color: white;
-}
+
+    .table {
+        background-color: white;
+    }
 </style>
 
 <body>
@@ -82,9 +82,17 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item2.GroupId)
                             </td>
-                            <td>
-                                @Html.ActionLink("Details", "Details", "Home", new { id = item2.Id }, null)
-                            </td>
+                            @if (User.Identity.Name != item2.UserName)
+                            {
+                                <td>
+                                    @Html.ActionLink("Details", "Details", "Home", new { id = item2.Id }, null)
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                </td>
+                            }
                         </tr>
 
 
@@ -96,20 +104,19 @@
     }
 
 </body>
+
+<br />
+    @if (ViewBag.Creat == true)
+    {
+<td>
+    @Html.ActionLink("Edit", "Edit", "Groups", new { id = ViewBag.ID }, null) |
+    @Html.ActionLink("Delete", "Delete", "Groups", new { id = ViewBag.ID }, null)
+</td>
+    }
+<br />
 @foreach (var item2 in Model)
 {
-
-
-    <br />
-    if (item2.isCreator == true)
-    {
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Groups", new { id = item2.GroupId }, null) |
-            @Html.ActionLink("Delete", "Delete", "Groups", new { id = item2.GroupId }, null)
-        </td>
-    }
-    <br />
-    if (item2.UserName == User.Identity.GetUserName())
+    if (item2.UserName == User.Identity.GetUserName() && item2.GroupId != null)
     {
         @Html.ActionLink("Leave Group", "Leave", new { id = item2.GroupId })
     }

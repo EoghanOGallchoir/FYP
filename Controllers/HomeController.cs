@@ -80,7 +80,6 @@ namespace WebApplication3.Controllers
 
             var userP = db.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.ProgressXP).SingleOrDefault();
             
-
             if (userP == 85)
             {
                 vocab = vocab.Where(x => x.quizID == 5 && x.quizID == 4 && x.quizID == 3 && x.quizID == 2 && x.quizID == 1);
@@ -104,10 +103,8 @@ namespace WebApplication3.Controllers
             else if (userP == null)
             {
                 vocab = vocab.Where(x => x.quizID == 0);
-                ViewBag.Empty = "No lessons learned yet!";
             }
             
-
             int pageSize = 10;
             int pageNumber = (page ?? 1);
 
